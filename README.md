@@ -6,9 +6,25 @@ The whole thing runs on plain YAML files checked into git. No database, no dashb
 
 ## The basic loop
 
-1. **Worker** runs on a schedule, reads `AGENTS.md` and the project roadmaps, claims the top available task, does the work on a `worker/*` branch, and opens a PR.
+1. **Worker** runs on a schedule, reads `AGENTS.md` and the project roadmaps, claims the top available task, does the work on a branch, and opens a PR.
 2. **Reviewer** fires when a PR lands. It merges straightforward software work automatically. Anything involving content, proposals, or outward-facing changes gets escalated to `needs-human` for Silas to look at.
 3. **Digest** goes out daily — a summary of what's progressing, what merged, and what needs Silas's attention or vote.
+
+## Daily digest email
+
+The `daily-digest` GitHub Actions workflow builds `digest.json` with `scripts/build_digest.py` and sends it through Brevo transactional email.
+
+Configure these under **Settings → Secrets and variables → Actions → Secrets → New repository secret**:
+
+| Name | Required | Notes |
+|---|---:|---|
+| `BREVO_API_KEY` | yes | Brevo transactional email API key. |
+| `DIGEST_TO` | yes | Recipient email address. |
+| `DIGEST_FROM` | yes | Sender email address allowed by Brevo. |
+| `DIGEST_TO_NAME` | no | Defaults to `Silas`. |
+| `DIGEST_FROM_NAME` | no | Defaults to `AI_Networker`. |
+
+`DIGEST_TO`, `DIGEST_FROM`, `DIGEST_TO_NAME`, and `DIGEST_FROM_NAME` may also be repository variables if you prefer keeping only the API key secret. `BREVO_API_KEY` must stay secret.
 
 ## Project kinds
 
@@ -41,6 +57,7 @@ pitches/                            proposals waiting for Silas's vote
 intake/                             new project requests before they're scaffolded
 scripts/resolve_deps.py             unblocks pipeline tasks each cycle
 scripts/build_status.py             regenerates STATUS.md
+scripts/build_digest.py             builds the daily digest JSON
 scripts/build_workspace.py          regenerates workspace.html
 scripts/topology.py                 prints dependency graphs
 scripts/intake.py                   scaffolds a new project from a request file
