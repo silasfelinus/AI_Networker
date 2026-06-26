@@ -48,9 +48,9 @@ tasks:
   - id: t-002
     milestone: m2
     title: "Audit the imported site and report build/run steps"
-    status: ready
-    owner: null
-    updated: "2026-06-26T00:00:00Z"
+    status: claimed
+    owner: worker
+    updated: "2026-06-26T07:22:00Z"
     passes: 0
     stakes: reversible
     note: >
