@@ -63,9 +63,9 @@ tasks:
   - id: t-003
     milestone: m2
     title: "Add local Docker compose wrapper for the imported WordPress site"
-    status: claimed
+    status: review
     owner: worker
-    updated: "2026-06-26T10:23:30Z"
+    updated: "2026-06-26T10:27:00Z"
     passes: 0
     stakes: reversible
     note: >
