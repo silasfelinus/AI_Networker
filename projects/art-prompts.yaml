@@ -1,22 +1,32 @@
-# art-prompts.yaml — Image catalog for Conductor project cards
+# art-prompts.yaml — Image catalog for Conductor project assets
 #
-# Two images per project:
+# Three images per project:
+#   icon  — square 1:1 (256×256 min). Used in nav, sidebar, card headers, favicons.
 #   card  — portrait 2:3 (512×768 min). Shown on the workspace project card.
-#   hero  — landscape 16:9 (1280×720 min). Shown as a banner/header in the project view.
+#   hero  — landscape 16:9 (1280×720 min). Shown as a banner/header in project view.
 #
 # Workflow:
 #   1. Copy the prompt into ChatGPT (DALL-E 3 or GPT-4o image gen).
-#   2. Set the correct aspect ratio in the generation UI (2:3 for card, 16:9 for hero).
+#   2. Set the correct aspect ratio in the generation UI (1:1 / 2:3 / 16:9).
 #   3. Export as .webp at the minimum size listed above.
 #   4. Save to the image_path listed below (relative to repo root).
-#   5. Run: python scripts/build_workspace.py
-#      The placeholder swaps to your image automatically.
+#      OR — easier — run `python scripts/serve_workspace.py`, open
+#      http://localhost:8000, and click any placeholder image to upload directly.
+#   5. The workspace rebuilds and swaps in your image automatically.
 #
 # Status values: pending | done
 
 images:
 
   - project: conductor
+    icon:
+      image_path: projects/images/conductor-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, orchestral conductor robot silhouette holding a
+        glowing baton aloft, teal and deep indigo palette, bold clean vector
+        shapes, square composition, no text
     card:
       image_path: projects/images/conductor-card.webp
       status: pending
@@ -36,6 +46,14 @@ images:
         teal and deep indigo, cinematic scale, no text, 16:9 landscape
 
   - project: kind-robots
+    icon:
+      image_path: projects/images/kind-robots-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, friendly round purple robot face with a warm
+        smile, mint green accent highlights, bold simplified shapes, square
+        composition, no text
     card:
       image_path: projects/images/kind-robots-card.webp
       status: pending
@@ -54,6 +72,14 @@ images:
         detail across the full frame, no text, 16:9 landscape
 
   - project: humboldt-scoop
+    icon:
+      image_path: projects/images/humboldt-scoop-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, vintage camera lens with a redwood tree silhouette
+        reflected inside the glass, earthy green and warm amber, bold simplified,
+        square composition, no text
     card:
       image_path: projects/images/humboldt-scoop-card.webp
       status: pending
@@ -73,6 +99,14 @@ images:
         16:9 landscape
 
   - project: humboldt-poop-scoop-cms
+    icon:
+      image_path: projects/images/humboldt-poop-scoop-cms-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, cheerful cartoon paw print centered in a soft
+        blue rounded square, clean white background ring, bold playful style,
+        square composition, no text
     card:
       image_path: projects/images/humboldt-poop-scoop-cms-card.webp
       status: pending
@@ -91,6 +125,14 @@ images:
         neighborhood, soft blues and white, no text, 16:9 landscape
 
   - project: approval-portal
+    icon:
+      image_path: projects/images/approval-portal-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, bold glowing green checkmark inside a dark
+        hexagonal badge, clean professional vector, square composition,
+        no text
     card:
       image_path: projects/images/approval-portal-card.webp
       status: pending
@@ -110,6 +152,13 @@ images:
         accents, professional interface aesthetic, no text, 16:9 landscape
 
   - project: digital-storefront
+    icon:
+      image_path: projects/images/digital-storefront-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, shopping bag with a single bold sparkle star,
+        warm amber and teal, clean graphic shapes, square composition, no text
     card:
       image_path: projects/images/digital-storefront-card.webp
       status: pending
@@ -129,6 +178,14 @@ images:
         no text, 16:9 landscape
 
   - project: brainstorm
+    icon:
+      image_path: projects/images/brainstorm-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, glowing lightbulb with a single colorful thought
+        spark radiating upward, warm yellow and purple, bold clean graphic,
+        square composition, no text
     card:
       image_path: projects/images/brainstorm-card.webp
       status: pending
@@ -148,6 +205,14 @@ images:
         no text, 16:9 landscape
 
   - project: mermaids-of-venice
+    icon:
+      image_path: projects/images/mermaids-of-venice-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, mermaid tail silhouette curling above a small
+        canal wave, deep teal and warm gold, elegant bold graphic, square
+        composition, no text
     card:
       image_path: projects/images/mermaids-of-venice-card.webp
       status: pending
@@ -167,6 +232,14 @@ images:
         and warm gold, no text, 16:9 landscape
 
   - project: coat-dance
+    icon:
+      image_path: projects/images/coat-dance-icon.webp
+      status: pending
+      size: "256x256"
+      prompt: >
+        flat minimal app icon, abstracted coat silhouette caught mid-spin,
+        bold navy and cream with a warm gold accent arc, square composition,
+        no text
     card:
       image_path: projects/images/coat-dance-card.webp
       status: pending

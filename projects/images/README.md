@@ -1,20 +1,37 @@
-# Project Card Images
+# Project Images
 
-Drop generated art here and the workspace updates automatically.
+Three image types per project, all stored here as `{slug}-{variant}.webp`.
 
-## How to add an image
+| Variant | Ratio | Min size | Use |
+|---------|-------|----------|-----|
+| `icon`  | 1:1   | 256×256  | Card header, nav, favicons |
+| `card`  | 2:3   | 512×768  | Project card portrait |
+| `hero`  | 16:9  | 1280×720 | Project banner / header |
 
-1. Open `projects/art-prompts.yaml` — find the DALL-E prompt for your project.
-2. Paste the prompt into ChatGPT (DALL-E 3 or GPT-4o image gen).
-3. Download the result, export as `.webp` at 512×512px (1:1 ratio).
-4. Save it here as `{project-slug}.webp` (e.g. `approval-portal.webp`).
-5. Run `python scripts/build_workspace.py` from the repo root.
+## Easiest way: upload from the workspace
 
-The project card immediately shows your image instead of the placeholder.
+```
+python scripts/serve_workspace.py
+```
+
+Open http://localhost:8000/, then **click any placeholder image** to pick a replacement file.
+The server saves it to the correct path, rebuilds `workspace.html`, and the page reloads.
+
+## Manual way
+
+1. Open `projects/art-prompts.yaml` — find the DALL-E prompt for your project + variant.
+2. Generate in ChatGPT at the correct aspect ratio (1:1 / 2:3 / 16:9).
+3. Export as `.webp` at the minimum size above.
+4. Save here as `{slug}-{variant}.webp` (e.g. `approval-portal-card.webp`).
+5. Run `python scripts/build_workspace.py` from repo root.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `coming-soon.svg` | Placeholder shown while a project's real art is pending — do not delete |
-| `{slug}.webp` | Real card art, replaces the placeholder for that project |
+| `coming-soon-icon.svg` | 1:1 placeholder — do not delete |
+| `coming-soon-card.svg` | 2:3 placeholder — do not delete |
+| `coming-soon-hero.svg` | 16:9 placeholder — do not delete |
+| `{slug}-icon.webp` | Real icon, replaces the icon placeholder |
+| `{slug}-card.webp` | Real card art, replaces the card placeholder |
+| `{slug}-hero.webp` | Real hero art, replaces the hero placeholder |
