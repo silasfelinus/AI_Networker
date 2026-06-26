@@ -48,9 +48,9 @@ tasks:
   - id: t-002
     milestone: m2
     title: "Audit the imported site and report build/run steps"
-    status: claimed
+    status: review
     owner: worker
-    updated: "2026-06-26T07:22:00Z"
+    updated: "2026-06-26T07:29:00Z"
     passes: 0
     stakes: reversible
     note: >
@@ -59,3 +59,43 @@ tasks:
       projects/humboldt-scoop/scoops/NOTES.md, and flag anything that needs
       attention as new tasks. Do not change site code — just inventory.
       Previous worker attempt (PR #12) was done before the site landed; closed.
+
+  - id: t-003
+    milestone: m2
+    title: "Add local Docker compose wrapper for the imported WordPress site"
+    status: ready
+    owner: null
+    updated: "2026-06-26T07:29:00Z"
+    passes: 0
+    stakes: reversible
+    note: >
+      Add a minimal compose.yaml and .env.example for projects/humboldt-scoop/scoops/
+      so the imported WordPress site can be started consistently with MySQL/MariaDB.
+      Keep secrets out of git and do not deploy.
+
+  - id: t-004
+    milestone: m2
+    title: "Confirm imported theme, plugins, uploads, and database assets"
+    status: ready
+    owner: null
+    updated: "2026-06-26T07:29:00Z"
+    passes: 0
+    stakes: reversible
+    note: >
+      Do a full recursive inventory when local clone/listing access is available.
+      Verify whether the business-specific theme, plugins, uploads, and database dump
+      are present, then document any missing assets before build work continues.
+
+  - id: t-005
+    milestone: m2
+    title: "Harden WordPress config defaults before staging"
+    status: waiting
+    owner: null
+    updated: "2026-06-26T07:29:00Z"
+    passes: 0
+    stakes: reversible
+    depends_on: t-003
+    note: >
+      Review wp-config.php defaults after the local compose wrapper exists. Ensure auth
+      keys and salts come from environment for any shared/staging environment, and keep
+      deployment or DNS changes gated for Silas.
