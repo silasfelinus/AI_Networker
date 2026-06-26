@@ -1,0 +1,42 @@
+# Human-managed project overrides. Edit this file to pause or reprioritize projects.
+# Agents check this before claiming tasks — they skip projects where status != active.
+#
+# status:   active | paused | retired | finished
+# priority: low | normal | high | urgent
+
+overrides:
+  - slug: conductor
+    status: active
+    priority: normal
+
+  - slug: kind-robots
+    status: active
+    priority: normal
+
+  - slug: humboldt-scoop
+    status: active
+    priority: normal
+
+  - slug: humboldt-poop-scoop-cms
+    status: active
+    priority: normal
+
+  - slug: approval-portal
+    status: active
+    priority: normal
+
+  - slug: digital-storefront
+    status: active
+    priority: normal
+
+  - slug: brainstorm
+    status: active
+    priority: normal
+
+  - slug: mermaids-of-venice
+    status: paused
+    priority: low
+
+  - slug: coat-dance
+    status: paused
+    priority: low

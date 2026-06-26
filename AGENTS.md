@@ -35,9 +35,11 @@ software) and escalate.
    work on. CONTROL.md holds Silas's current intent and OVERRIDES anything in a roadmap it
    conflicts with. Then read this file, `projects/priority.yaml`, and the relevant
    `projects/*/roadmap.yaml` (skip `_template`).
-2. Honor CONTROL.md's direction and notes, then each project's `notes_from_silas`, over
+2. **Check `project-overrides.yaml`** — skip any project where `status != active`. Paused,
+   retired, and finished projects are off-limits; do not claim tasks for them.
+3. Honor CONTROL.md's direction and notes, then each project's `notes_from_silas`, over
    default ordering. (STATUS.md is auto-generated and read-only — never edit it.)
-3. Within the chosen project, take the highest-priority task with `status: ready`.
+4. Within the chosen project, take the highest-priority task with `status: ready`.
    If none anywhere, stop — do not invent work. (Exception: a proposal-kind project may
    have a standing instruction to generate N pitches per cycle — follow its roadmap.)
 
