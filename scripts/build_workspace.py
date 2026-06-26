@@ -343,7 +343,8 @@ def build_workspace():
     <strong style="color:#e2e8f0">icon</strong> (1:1, 256×256),
     <strong style="color:#e2e8f0">card</strong> (2:3, 512×768),
     <strong style="color:#e2e8f0">hero</strong> (16:9, 1280×720).
-    Generate in ChatGPT/DALL-E 3 at the correct ratio and drop the .webp into the listed path
+    Generate using ChatGPT image generation or the OpenAI Images API (<code style="color:#a5b4fc">gpt-image-1</code>)
+    at the correct ratio, drop the .webp into the listed path,
     — or click any placeholder while running <code style="color:#a5b4fc">serve_workspace.py</code>.
   </p>
   <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(380px, 1fr))">

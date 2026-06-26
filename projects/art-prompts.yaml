@@ -6,7 +6,7 @@
 #   hero  — landscape 16:9 (1280×720 min). Shown as a banner/header in project view.
 #
 # Workflow:
-#   1. Copy the prompt into ChatGPT (DALL-E 3 or GPT-4o image gen).
+#   1. Copy the prompt into ChatGPT (image generation) or call the OpenAI Images API (model: gpt-image-1).
 #   2. Set the correct aspect ratio in the generation UI (1:1 / 2:3 / 16:9).
 #   3. Export as .webp at the minimum size listed above.
 #   4. Save to the image_path listed below (relative to repo root).

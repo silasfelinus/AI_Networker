@@ -42,14 +42,14 @@ tasks:
 
   - id: t-002
     milestone: m2
-    title: "Generate project card images for the workspace UI (ChatGPT/DALL-E)"
+    title: "Generate project card images for the workspace UI (OpenAI image generation)"
     status: needs-human
     owner: null
     passes: 0
     stakes: reversible
     gate_human: true
     note: >
-      Use ChatGPT (DALL-E 3 or GPT-4o image generation) to create a flat minimal
+      Use ChatGPT (image generation) or the OpenAI Images API (model: gpt-image-1) to create a flat minimal
       card illustration for each of the 9 Conductor projects. Style: clean flat
       icon/illustration, brand-matching palette, 1:1 aspect ratio, 512px minimum,
       exported as .webp. Upload each image to the kind_robots repo at
@@ -57,7 +57,7 @@ tasks:
       on the matching entry in rawProjects inside
       components/content/workspace-page.vue.
 
-      Suggested DALL-E prompts per project:
+      Suggested prompts per project (use with OpenAI image generation):
 
       conductor:
         "flat minimal icon of an orchestral conductor robot directing a glowing

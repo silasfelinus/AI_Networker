@@ -19,8 +19,8 @@ The server saves it to the correct path, rebuilds `workspace.html`, and the page
 
 ## Manual way
 
-1. Open `projects/art-prompts.yaml` — find the DALL-E prompt for your project + variant.
-2. Generate in ChatGPT at the correct aspect ratio (1:1 / 2:3 / 16:9).
+1. Open `projects/art-prompts.yaml` — find the prompt for your project + variant.
+2. Generate using ChatGPT (image generation) or the OpenAI Images API (`gpt-image-1`) at the correct aspect ratio (1:1 / 2:3 / 16:9).
 3. Export as `.webp` at the minimum size above.
 4. Save here as `{slug}-{variant}.webp` (e.g. `approval-portal-card.webp`).
 5. Run `python scripts/build_workspace.py` from repo root.
