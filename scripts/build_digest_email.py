@@ -27,12 +27,14 @@ def build_payload(digest):
         if project["in_flight"]:
             project_html += "<p><i>In flight:</i></p>" + ul(project["in_flight"])
 
+    open_branches = digest.get("open_branches", [])
     digest_date = html.escape(str(digest["date"]))
     html_content = f"""
     <h2>AI_Networker — Daily Digest ({digest_date})</h2>
     <h3>🗳️ Awaiting your vote (pitches)</h3>{ul(digest['pitches_awaiting_vote'] or ['(no pitches waiting)'])}
     <h3>Merged in last 24h</h3>{ul(digest['merges_since'] or ['(nothing merged)'])}
     <h3>Needs your attention</h3>{ul(digest['all_needs_attention'] or ['(all clear)'])}
+    <h3>🌿 Open branches</h3>{ul(open_branches or ['(none — all merged)'])}
     <hr>{project_html}
     """
 

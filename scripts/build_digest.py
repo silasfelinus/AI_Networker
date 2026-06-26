@@ -39,6 +39,20 @@ def scan_pitches():
             out.append(title)
     return out
 
+def scan_branches():
+    """Return summary strings for remote branches not yet merged to main."""
+    raw = git("branch", "-r", "--no-merged", "origin/main")
+    out = []
+    for line in raw.splitlines():
+        ref = line.strip()
+        if not ref or "HEAD" in ref or ref == "origin/main":
+            continue
+        name = ref.removeprefix("origin/")
+        age = git("log", "-1", "--pretty=format:%ar", ref)
+        author = git("log", "-1", "--pretty=format:%an", ref)
+        out.append(f"{name} — last commit {age} by {author}")
+    return out
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--since", default="24 hours ago")
@@ -76,6 +90,7 @@ def main():
         "projects": projects,
         "all_needs_attention": [x for p in projects for x in p["needs_attention"]],
         "pitches_awaiting_vote": scan_pitches(),
+        "open_branches": scan_branches(),
     }
     print(json.dumps(payload, indent=2))
 

@@ -17,6 +17,7 @@ def main() -> int:
         "projects",
         "all_needs_attention",
         "pitches_awaiting_vote",
+        "open_branches",
     }
     list_keys = required_keys - {"date"}
     required_project_keys = {
