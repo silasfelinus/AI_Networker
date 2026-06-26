@@ -37,6 +37,23 @@ jobs:
               "all_needs_attention",
               "pitches_awaiting_vote",
           ]
+          list_keys = [
+              "commits_since",
+              "merges_since",
+              "projects",
+              "all_needs_attention",
+              "pitches_awaiting_vote",
+          ]
+          required_project_keys = [
+              "name",
+              "kind",
+              "progress_pct",
+              "milestones",
+              "needs_attention",
+              "in_flight",
+              "waiting_count",
+              "ready_count",
+          ]
 
           try:
               with open("digest.json", encoding="utf-8") as digest_file:
@@ -50,9 +67,28 @@ jobs:
               print("digest.json is missing required keys: " + ", ".join(missing), file=sys.stderr)
               sys.exit(1)
 
-          if not isinstance(digest["projects"], list):
-              print("digest.json field projects must be a list", file=sys.stderr)
+          wrong_list_types = [key for key in list_keys if not isinstance(digest[key], list)]
+          if wrong_list_types:
+              print("digest.json fields must be lists: " + ", ".join(wrong_list_types), file=sys.stderr)
               sys.exit(1)
+
+          for index, project in enumerate(digest["projects"]):
+              if not isinstance(project, dict):
+                  print(f"digest.json projects[{index}] must be an object", file=sys.stderr)
+                  sys.exit(1)
+
+              missing_project_keys = [key for key in required_project_keys if key not in project]
+              if missing_project_keys:
+                  print(
+                      f"digest.json projects[{index}] missing keys: " + ", ".join(missing_project_keys),
+                      file=sys.stderr,
+                  )
+                  sys.exit(1)
+
+              for key in ["milestones", "needs_attention", "in_flight"]:
+                  if not isinstance(project[key], list):
+                      print(f"digest.json projects[{index}].{key} must be a list", file=sys.stderr)
+                      sys.exit(1)
 
           print("digest.json validated with " + str(len(digest["projects"])) + " projects")
           PY
