@@ -36,7 +36,7 @@ tasks:
   - id: t-001
     milestone: m1
     title: "Confirm the loop: trivial no-op PR through the full cycle"
-    status: claimed
+    status: review
     owner: worker
     updated: "2026-06-25T20:49:05-07:00"
     passes: 0
