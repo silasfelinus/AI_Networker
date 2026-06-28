@@ -72,6 +72,48 @@ upgrades. Quality over quantity. Don't repeat existing pitches.
 **Notes:**
 - (your notes)
 
+### conductor  (software)
+**Direction:** Improvements to the conductor / AI_Networker system itself — CI, scripts,
+ops tooling. Keep changes small and reversible. Nothing outward-facing without needs-human.
+**Notes:**
+- (your notes)
+
+### alexa-integration  (software)
+**Direction:** Custom Alexa skill + Unraid relay server. Draft and prototype only — do NOT
+publish the skill to the Alexa store or expose a live endpoint without needs-human.
+Auth via KR_API_TOKEN (same token as fetch_todos.py).
+**Notes:**
+- (your notes)
+
+### conductor-app  (software)
+**Direction:** Flutter app (iOS/Android/macOS/web) over the kind_robots REST API.
+Build incrementally; each milestone should run standalone. Do NOT submit to any app
+store without needs-human. Auth secrets stay out of source control.
+**Notes:**
+- (your notes)
+
+### art-generator-connect  (software)
+**Direction:** Wire conductor Workers into the existing kind_robots art API (SD/ComfyUI).
+Treat the shared backend as read-only/external — consume endpoints, don't modify them.
+Backend changes become pitches, not direct code edits.
+**Notes:**
+- (your notes)
+
+### media-watchlist  (software)
+**Direction:** Parse + import Silas's personal media log, then surface it with browse,
+stats, and integrations (Letterboxd, Comic Vine, Tautulli). HARD GATE: no affiliate
+links and no public-facing pages without needs-human. Dummy/sample data only until
+the real log is shared.
+**Notes:**
+- (your notes)
+
+### storymaker  (software)
+**Direction:** Collaborative storytelling engine built on top of existing Kind Robots
+data models. App-owned logic only; shared backend is read-only/external.
+Start with the session data model (needs-human gate) before any play-mode code.
+**Notes:**
+- (your notes)
+
 ---
 
 ## How my edits take effect
