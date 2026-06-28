@@ -2,7 +2,7 @@
 
 date: 2026-06-26
 project-target: humboldt-poop-scoop-cms
-status: awaiting-silas
+status: approved
 
 ## The idea
 Create a lightweight printable and digital "route card" system for recurring poop-scoop visits: one card per service day with customer, neighborhood, pets, yard notes, gate details placeholder, and visit checklist. In the CMS, this becomes a dummy-data-only export view; as a storefront product, the same layout can become a PDF manual/template for solo service businesses.
