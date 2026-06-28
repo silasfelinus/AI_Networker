@@ -1,7 +1,7 @@
 # Pitch: Alexa Integration — voice commands to Conductor via Unraid
 date: 2026-06-27
 project-target: conductor
-status: awaiting-silas
+status: approved
 
 ## The idea
 A custom Alexa skill with a unique wake phrase routes voice commands through
