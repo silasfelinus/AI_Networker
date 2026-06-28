@@ -1,0 +1,55 @@
+# art-generate.yaml — Active image-generation queue
+#
+# This file is the live send-this-next list for generator batches.
+# Keep reusable prompt libraries in ART-PROMPTS.md and projects/art-prompts.yaml.
+# Remove or mark entries done after the images are generated and saved.
+#
+# Batch rule: send up to ten queued entries at a time. Every entry must become one
+# standalone image file. No collages, contact sheets, grids, text, logos, or watermarks.
+
+status_values:
+  - pending
+  - sent
+  - done
+
+queues:
+  project_assets:
+    description: Static Conductor workspace assets saved to projects/images/.
+    source: projects/art-prompts.yaml
+    status: pending
+    entries:
+      - project: sketchy
+        variants: [icon, card, hero]
+      - project: art-generator-connect
+        variants: [icon, card, hero]
+      - project: storymaker
+        variants: [icon, card, hero]
+      - project: media-watchlist
+        variants: [icon, card, hero]
+      - project: conductor-app
+        variants: [icon, card, hero]
+      - project: alexa-integration
+        variants: [icon, card, hero]
+
+  dream_artcollection_starters:
+    description: New Kind Robots Dreams get card/icon/hero ArtImage starter records and matching filesystem paths automatically.
+    target_repo: silasfelinus/kind_robots
+    folder_template: public/images/artcollections/{dream_slug}/
+    public_path_template: /images/artcollections/{dream_slug}/{dream_slug}-{variant}.webp
+    generated_by: server/api/dreams/batch.post.ts
+    variants: [card, icon, hero]
+    status: automated-for-new-dreams
+
+  new_project_inspiration:
+    description: For every new Dream/project, queue 3-5 inspiration or screenshot/mockup prompts after the starter card/icon/hero set.
+    target_repo: silasfelinus/kind_robots
+    folder_template: public/images/artcollections/{dream_slug}/
+    public_path_template: /images/artcollections/{dream_slug}/{dream_slug}-inspiration-{index}.webp
+    count: 3-5
+    status: pending-on-new-project
+    prompt_requirements:
+      - Use the Dream title, description, pitch, and artPrompt as the visual brief.
+      - Include screenshots or mockups before build-out when that helps communicate the feature.
+      - Keep the images inspirational, standalone, and useful as ArtCollection gallery material.
+      - No readable UI text unless Silas explicitly requests a screenshot with labels.
+      - No collage, contact sheet, logo, watermark, or accidental typography.
