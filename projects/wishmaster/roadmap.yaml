@@ -1,0 +1,63 @@
+project: wishmaster
+kind: software
+
+notes_from_silas: |
+  Wishmaster is a smart meta-bot that takes natural language "wishes" from users
+  and assembles them into structured projects. It sits at the intersection of
+  Bot, Composition, and Dream. The user says what they want (website, image set,
+  story, product, whatever); Wishmaster builds it.
+
+  Composition has existed in the schema but was never implemented. Wishmaster is
+  the first real use of it: a modular output template the user can customize
+  (what images? what text? what variants? in what format?). A fulfilled wish
+  becomes a new Dream of type PROJECT in the system.
+
+  Ties into the karma economy: wishing, fulfilling wishes via the bounty system,
+  and having wishes fulfilled by others all generate karma. The bounty system
+  (being built in parallel) lets users post wishes other users can fill for mana
+  and karma rewards.
+
+  House style: Nuxt 4 / Vue 3 / TypeScript / Prisma / Pinia 3 / DaisyUI.
+  Do NOT auto-publish, spend money, or fire external services without needs-human.
+
+milestones:
+  - id: m1
+    title: "Scope + Composition model audit"
+    weight: 10
+    status: not-started
+
+  - id: m2
+    title: "Wishmaster bot interface — accept wish, parse intent"
+    weight: 25
+    status: not-started
+
+  - id: m3
+    title: "Composition as output spec — user customizes return types"
+    weight: 20
+    status: not-started
+
+  - id: m4
+    title: "Wish → Dream pipeline (creates PROJECT Dream from wish)"
+    weight: 30
+    status: not-started
+
+  - id: m5
+    title: "Karma + bounty integration"
+    weight: 15
+    status: not-started
+
+tasks:
+  - id: t-001
+    milestone: m1
+    title: "Audit Composition schema and write scope doc for Wishmaster"
+    status: ready
+    owner: null
+    passes: 0
+    stakes: reversible
+    updated: "2026-06-29T00:00:00Z"
+    note: >
+      Read the Composition model in schema.prisma. Write a short scope doc
+      (projects/wishmaster/scope.md) covering: what Composition was intended to
+      be, what Wishmaster needs it to be, and the minimal diff to make it useful.
+      No code changes — just the doc. Set status: needs-human when done.
+    gate_human: true
