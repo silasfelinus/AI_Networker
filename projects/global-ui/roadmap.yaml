@@ -22,6 +22,10 @@ notes_from_silas: |
   Prefer app-owned UI/store/API logic that consumes existing backend and conductor
   files safely.
 
+  Implementation seed: the project view should include a specific field/prompt that
+  asks, "How can I make this look better?" This should invite user-facing polish ideas
+  for the currently viewed project and can feed the kaizen/task creation flow.
+
 milestones:
   - id: m1
     title: "Task language + presentation model"
@@ -107,7 +111,9 @@ tasks:
       Create the project-detail kaizen surface: a contextual prompt that helps the
       user move the currently viewed project forward. It should feel lightweight,
       actionable, and clearly tied to the selected project without polluting the
-      global honeydo queue.
+      global honeydo queue. Include a project-view field/prompt that asks, "How can
+      I make this look better?" and uses the user's answer as a possible kaizen or
+      task seed for that project.
 
   - id: t-005
     milestone: m5
@@ -124,3 +130,17 @@ tasks:
       Produce the final navigation/presentation map for projects, roadmaps, Todos,
       honeydos, kaizens, approvals, and completion history. Identify any follow-up
       tasks as separate scoped work rather than expanding this task.
+
+  - id: t-006
+    milestone: m4
+    title: "Add the project-view improvement prompt field"
+    status: waiting
+    owner: null
+    passes: 0
+    stakes: reversible
+    depends_on: t-001
+    note: >
+      Add a visible field to the project view that specifically asks, "How can I make
+      this look better?" The field should be scoped to the currently viewed project,
+      feel like a friendly polish/UX prompt, and route submitted ideas through the
+      approved kaizen or task-creation flow rather than storing disconnected notes.
