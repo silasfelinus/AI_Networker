@@ -18,18 +18,8 @@ queues:
     source: projects/art-prompts.yaml
     status: pending
     entries:
-      - project: sketchy
-        variants: [icon, card, hero]
-      - project: art-generator-connect
-        variants: [icon, card, hero]
-      - project: storymaker
-        variants: [icon, card, hero]
       - project: media-watchlist
-        variants: [icon, card, hero]
-      - project: conductor-app
-        variants: [icon, card, hero]
-      - project: alexa-integration
-        variants: [icon, card, hero]
+        variants: [icon]
 
   dream_artcollection_starters:
     description: New Kind Robots Dreams get card/icon/hero ArtImage starter records and matching filesystem paths automatically.

@@ -22,12 +22,7 @@ When asked for a batch, generate up to ten images in the same order as the queue
 
 Pending project asset sets currently cataloged in `projects/art-prompts.yaml`:
 
-- `sketchy` — icon, card, hero
-- `art-generator-connect` — icon, card, hero
-- `storymaker` — icon, card, hero
-- `media-watchlist` — icon, card, hero
-- `conductor-app` — icon, card, hero
-- `alexa-integration` — icon, card, hero
+- `media-watchlist` — icon
 
 Save generated project files to `projects/images/{slug}-{type}.webp`, then run:
 
