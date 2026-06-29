@@ -278,3 +278,14 @@ requests:
     label: "Encyclopedia of Jokes"
     prompt: >
       polished web illustration for Encyclopedia of Jokes, clear subject, cohesive Kind Robots visual style, no text
+  - id: "kind-robots-excalibur-image-5c186a97"
+    source: "kind-robots-missing-image"
+    status: "pending"
+    target_repo: "silasfelinus/kind_robots"
+    image_path: "public/images/rewards/item/excalibur.webp"
+    source_url: "/images/rewards/item/excalibur.webp"
+    page_url: "https://kind-robots.vercel.app/rewards"
+    variant: "image"
+    label: "Excalibur"
+    prompt: >
+      polished web illustration for Excalibur, clear subject, cohesive Kind Robots visual style, no text
