@@ -31,31 +31,9 @@ notes_from_silas: |
   without rewriting the whole project spec or roadmap. Treat it as a lightweight
   feature wishlist/backlog that can later graduate into concrete tasks.
 
-milestones:
-  - id: m1
-    title: "Task language + presentation model"
-    weight: 20
-    status: not-started
-
-  - id: m2
-    title: "Front-end task creation registers in the workspace"
-    weight: 30
-    status: not-started
-
-  - id: m3
-    title: "Global honeydo inbox"
-    weight: 20
-    status: not-started
-
-  - id: m4
-    title: "Project-specific kaizen prompts"
-    weight: 20
-    status: not-started
-
-  - id: m5
-    title: "Unified project/task navigation design"
-    weight: 10
-    status: not-started
+  Kind Robots audit note: current frontend/backend support is partial. Todo already
+  supports AGENT, KAIZEN, and HONEYDO categories globally, but Todos are not scoped to
+  a dream/project and desired features are not modeled as an orderable project list yet.
 
 tasks:
   - id: t-001
@@ -133,6 +111,7 @@ tasks:
       - t-003
       - t-004
       - t-007
+      - t-008
     note: >
       Produce the final navigation/presentation map for projects, roadmaps, Todos,
       desired feature lists, honeydos, kaizens, approvals, and completion history.
@@ -169,3 +148,46 @@ tasks:
       roadmap every time a new feature idea appears; the list is a lightweight
       feature wishlist/backlog that can later graduate into tasks through the
       approved task-creation flow.
+
+  - id: t-008
+    milestone: m2
+    title: "Add Kind Robots support for project-scoped task and feature surfaces"
+    status: waiting
+    owner: null
+    passes: 0
+    stakes: reversible
+    depends_on: t-001
+    note: >
+      Update Kind Robots so the frontend/backend can support project-scoped kaizens
+      and desired features. Current Todo support has AGENT, KAIZEN, and HONEYDO
+      categories, but no dreamId/projectId, order index, or desired-feature model.
+      Add the minimal app-owned data model, store methods, API routes, and project-view
+      UI needed for a selected dream/project to show its own kaizens and orderable
+      desired feature list. Preserve store-mediated component interactions and avoid
+      direct component API calls.
+
+milestones:
+  - id: m1
+    title: "Task language + presentation model"
+    weight: 20
+    status: not-started
+
+  - id: m2
+    title: "Front-end task creation registers in the workspace"
+    weight: 30
+    status: not-started
+
+  - id: m3
+    title: "Global honeydo inbox"
+    weight: 20
+    status: not-started
+
+  - id: m4
+    title: "Project-specific kaizen prompts"
+    weight: 20
+    status: not-started
+
+  - id: m5
+    title: "Unified project/task navigation design"
+    weight: 10
+    status: not-started
