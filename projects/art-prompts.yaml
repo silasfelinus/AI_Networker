@@ -41,6 +41,38 @@
 # Status values: pending
 
 images:
+  - project: wishmaster
+    icon:
+      image_path: projects/images/wishmaster-icon.webp
+      size: "256x256"
+      status: pending
+      prompt: >
+        Premium app icon for Wishmaster, a luminous floating lantern shaped like a speech
+        bubble with a subtle genie silhouette glowing inside, warm amber and gold light,
+        crisp iconic app-icon polish, dark vignette backdrop, no text, no logo, no watermark,
+        no collage, square composition
+    card:
+      image_path: projects/images/wishmaster-card.webp
+      size: "512x768"
+      status: pending
+      prompt: >
+        Professional portrait card illustration for Wishmaster, a diverse user and a glowing
+        bot shake hands over a luminous contract that unfolds into project cards, composition
+        tiles, and wish-fulfillment paths, warm magical atmosphere meets futuristic product
+        design, premium studio illustration, no text, no logo, no watermark, no collage,
+        2:3 portrait composition
+    hero:
+      image_path: projects/images/wishmaster-hero.webp
+      size: "1280x720"
+      status: pending
+      prompt: >
+        High-end wide hero illustration for Wishmaster, a grand workshop where wishes become
+        projects — users speak desires to a patient bot who assembles customized Compositions
+        of images, text, stories, and rewards into new Dreams; a diverse consortium of humans,
+        robots, creatures, and companions each pursuing their own custom creation, premium
+        cinematic product launch art, no readable text, no logo, no watermark, no collage,
+        16:9 landscape composition
+
   - project: media-watchlist
     icon:
       image_path: projects/images/media-watchlist-icon.webp
@@ -528,6 +560,33 @@ inspirations:
           A Kind Robots community gathering where agents, creators, reviewers, and users of
           all species interact across project portals, trade work tokens, and celebrate shipped
           milestones, warm cinematic consortium art, no text, no collage
+
+  - project: wishmaster
+    target_repo: silasfelinus/kind_robots
+    images:
+      - image_path: public/images/artcollections/wishmaster/wishmaster-inspiration-01.webp
+        size: "1280x720"
+        status: pending
+        prompt: >
+          A genie-like bot interface glowing with soft warm light where a user speaks a
+          wish and the Wishmaster unfolds it into a glowing project tree: images, text,
+          rewards, and tasks branching outward, cinematic fantasy meets product art, no
+          text, no collage
+      - image_path: public/images/artcollections/wishmaster/wishmaster-inspiration-02.webp
+        size: "1280x720"
+        status: pending
+        prompt: >
+          A modular composition workbench where a diverse team selects output tiles —
+          image cards, text blocks, icon slots, story fragments — snapping them together
+          into a custom generation template, premium interactive product illustration,
+          no text, no collage
+      - image_path: public/images/artcollections/wishmaster/wishmaster-inspiration-03.webp
+        size: "1280x720"
+        status: pending
+        prompt: >
+          A glowing contract materializing between a user and a bot: the wish written in
+          light becomes a project card, ArtImages, Characters, and Rewards orbiting around
+          it into a new dream, cinematic Kind Robots world-building art, no text, no collage
 
   - project: mermaids-of-venice
     target_repo: silasfelinus/kind_robots
