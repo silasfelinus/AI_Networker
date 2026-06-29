@@ -289,3 +289,14 @@ requests:
     label: "Excalibur"
     prompt: >
       polished web illustration for Excalibur, clear subject, cohesive Kind Robots visual style, no text
+  - id: "kind-robots-the-script-image-d5041034"
+    source: "kind-robots-missing-image"
+    status: "pending"
+    target_repo: "silasfelinus/kind_robots"
+    image_path: "public/images/rewards/power/the-script.webp"
+    source_url: "/images/rewards/power/the-script.webp"
+    page_url: "https://kind-robots.vercel.app/rewards"
+    variant: "image"
+    label: "The Script"
+    prompt: >
+      polished web illustration for The Script, clear subject, cohesive Kind Robots visual style, no text
