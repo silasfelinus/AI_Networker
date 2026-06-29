@@ -28,6 +28,7 @@
 | conductor | software | 0.0% | 3 | 0 | 0 |
 | conductor-app | software | 0.0% | 1 | 0 | 0 |
 | digital-storefront | content | 0.0% | 1 | 0 | 0 |
+| engagement | software | 0.0% | 1 | 0 | 0 |
 | global-ui | software | 0.0% | 1 | 0 | 0 |
 | humboldt-scoop | software | 10.0% | 1 | 2 | 0 |
 | humboldt-scoop-cms | software | 0.0% | 1 | 0 | 0 |
