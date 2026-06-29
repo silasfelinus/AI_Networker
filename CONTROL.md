@@ -64,9 +64,11 @@ backend is read-only/external. Backend changes become pitches, never direct edit
 
 ### global-ui  (software)
 **Direction:** Define and build the shared user-facing interface for projects, tasks,
-front-end TODOs, honeydos, kaizens, approvals, and completion history. Honeydos are global
-LLM-assigned user tasks; kaizens are project-specific prompts shown while viewing a project.
-Keep task creation visible on the front end without creating a second source of truth.
+front-end TODOs, desired feature lists, honeydos, kaizens, approvals, and completion
+history. Honeydos are global LLM-assigned user tasks; kaizens are project-specific prompts
+shown while viewing a project. Desired features are orderable project wishlists that humans
+or AI can add/adjust/reorder/promote without rewriting the project spec. Keep task creation
+visible on the front end without creating a second source of truth.
 **Notes:**
 - Start by approving the vocabulary and presentation model before implementation.
 
