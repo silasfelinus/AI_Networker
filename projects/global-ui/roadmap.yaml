@@ -26,6 +26,11 @@ notes_from_silas: |
   asks, "How can I make this look better?" This should invite user-facing polish ideas
   for the currently viewed project and can feed the kaizen/task creation flow.
 
+  Desired features should be an orderable list on each dream/project. Humans and AI
+  should both be able to add, adjust, reorder, promote, or retire desired features
+  without rewriting the whole project spec or roadmap. Treat it as a lightweight
+  feature wishlist/backlog that can later graduate into concrete tasks.
+
 milestones:
   - id: m1
     title: "Task language + presentation model"
@@ -65,10 +70,11 @@ tasks:
     note: >
       Draft a concise product/interface spec that defines the user-facing task
       taxonomy and presentation rules: normal project tasks, front-end TODOs,
-      honeydos, kaizens, approvals, and archived/completed states. Include where
-      each appears, what actions the user can take, how it registers on the front
-      end, and what remains the source of truth. End needs-human so Silas can
-      approve the language before implementation.
+      desired feature lists, honeydos, kaizens, approvals, and archived/completed
+      states. Include where each appears, what actions the user can take, how it
+      registers on the front end, what remains the source of truth, and how desired
+      features graduate into concrete tasks without rewriting the project spec. End
+      needs-human so Silas can approve the language before implementation.
 
   - id: t-002
     milestone: m2
@@ -126,10 +132,12 @@ tasks:
       - t-002
       - t-003
       - t-004
+      - t-007
     note: >
       Produce the final navigation/presentation map for projects, roadmaps, Todos,
-      honeydos, kaizens, approvals, and completion history. Identify any follow-up
-      tasks as separate scoped work rather than expanding this task.
+      desired feature lists, honeydos, kaizens, approvals, and completion history.
+      Identify any follow-up tasks as separate scoped work rather than expanding
+      this task.
 
   - id: t-006
     milestone: m4
@@ -144,3 +152,20 @@ tasks:
       this look better?" The field should be scoped to the currently viewed project,
       feel like a friendly polish/UX prompt, and route submitted ideas through the
       approved kaizen or task-creation flow rather than storing disconnected notes.
+
+  - id: t-007
+    milestone: m2
+    title: "Add an orderable desired-features list to each project view"
+    status: waiting
+    owner: null
+    passes: 0
+    stakes: reversible
+    depends_on: t-001
+    note: >
+      Add a visible, orderable desired-features list to each dream/project view.
+      Humans and AI should be able to add new feature ideas, edit wording, reorder
+      by importance, mark items as promoted/retired, and convert an item into a
+      scoped task when ready. This should avoid rewriting the project spec or
+      roadmap every time a new feature idea appears; the list is a lightweight
+      feature wishlist/backlog that can later graduate into tasks through the
+      approved task-creation flow.
