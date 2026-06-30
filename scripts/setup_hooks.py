@@ -32,6 +32,9 @@ if git diff --cached --name-only | grep -q "^projects/process/"; then
         exit 1
     fi
     git add projects/images/ projects/process/ projects/art-generate.yaml projects/art-prompts.yaml
+    if [ -d "$REPO_ROOT/projects/process/unmatched" ]; then
+        git add projects/process/unmatched/
+    fi
     echo "[pre-commit] Distribution done."
 fi
 """
