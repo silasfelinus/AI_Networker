@@ -35,7 +35,14 @@ def load_overrides() -> dict:
     if not OVERRIDES_FILE.exists():
         return {}
     raw = yaml.safe_load(OVERRIDES_FILE.read_text()) or {}
-    return raw.get("projects", raw)
+    # Handle list format: overrides: [{slug: x, status: y}, ...]
+    entries = raw.get("overrides") or raw.get("projects")
+    if isinstance(entries, list):
+        return {e["slug"]: e for e in entries if isinstance(e, dict) and "slug" in e}
+    if isinstance(entries, dict):
+        return entries
+    # Fallback: top-level dict keyed by slug
+    return {k: v for k, v in raw.items() if isinstance(v, dict)} if isinstance(raw, dict) else {}
 
 
 def active_slugs(overrides: dict) -> list:
