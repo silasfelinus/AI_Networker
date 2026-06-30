@@ -72,6 +72,16 @@ visible on the front end without creating a second source of truth.
 **Notes:**
 - Start by approving the vocabulary and presentation model before implementation.
 
+### pinball-hero  (content)
+**Direction:** Create practical build plans for a high-quality, efficient, partly 3D-printed
+pinball machine. The final package should include parts lists, printable model specs/files,
+and instructions at multiple price points. Optimize for a Bambu Lab A1-class printer and
+comfortable/common off-the-shelf parts; flag safety, durability, and cost tradeoffs instead
+of pretending every part should be printed.
+**Notes:**
+- Keep the first cycle focused on architecture and constraints before sourcing or CAD work.
+- No purchasing, publishing, or safety-critical electrical recommendations without human review.
+
 ### brainstorm  (proposal)
 **Direction:** Generate a few strong, specific, buildable pitches each cycle for me to vote
 on — new products (within approved types), content series, revenue streams, and AI_Networker
@@ -130,5 +140,5 @@ Start with the session data model (needs-human gate) before any play-mode code.
 - **Direction / notes:** agents read them next cycle. No script needed.
 - **Priority:** also update projects/priority.yaml (or tell an agent to sync it).
 - **Approve a gated task / pitch:** edit the task in its roadmap (`approved_by_human: true`,
-  `status: done`) or set a pitch's `status:` to approved/rejected. The resolver unblocks
+`status: done`) or set a pitch's `status:` to approved/rejected. The resolver unblocks
 dependents next cycle.
