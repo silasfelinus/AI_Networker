@@ -24,6 +24,7 @@
 | approval-portal | software | 0.0% | 0 | 0 | 0 |
 | art-generator-connect | software | 0.0% | 1 | 0 | 0 |
 | brainstorm | proposal | 0.0% | 1 | 0 | 0 |
+| career-transition | content | 0.0% | 1 | 0 | 0 |
 | coat-dance | content | 0.0% | 0 | 0 | 0 |
 | conductor | software | 0.0% | 3 | 1 | 0 |
 | conductor-app | software | 0.0% | 1 | 0 | 0 |
