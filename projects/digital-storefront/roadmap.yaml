@@ -2,8 +2,8 @@ project: digital-storefront
 kind: content
 notes_from_silas: "The store/content engine. Pipeline: research stores -> brainstorm content per\napproved\
   \ product type -> (I pick) -> create -> market on discovered channels ->\nadvertise on channels I've\
-  \ budgeted. HARD RULES: only build within\nproduct-types.yaml (I own that list \u2014 new types need\
-  \ a pitch). Never publish a\nlisting, post marketing, or spend ad money unattended \u2014 those are\
+  \ budgeted. HARD RULES: only build within\nproduct-types.yaml (I own that list — new types need\
+  \ a pitch). Never publish a\nlisting, post marketing, or spend ad money unattended — those are\
   \ needs-human.\nTreat every outward action as gated until I explicitly approve it.\n"
 milestones:
 - id: m1
@@ -36,16 +36,20 @@ tasks:
   passes: 0
   stakes: reversible
   gate_human: true
-  approved_by_human: true
-  note: "FOR SILAS: Platform research is complete \u2014 read projects/digital-storefront/research/stores.md\
-    \ for the full comparison. The short version: the recommendation is to start with Gumroad (direct\
-    \ PDF sales, simple) + itch.io (indie RPGs, zines, coloring packs, experiments). For print-on-demand\
-    \ merch, evaluate Printful vs Printify later once you have a design. For STL files, try Cults first,\
-    \ MyMiniFactory for polished collections. No accounts were created; this is research only. TO APPROVE:\
-    \ Add a short note here saying which platforms sound right to you (even just \"yes, Gumroad + itch.io\
-    \ for now\"), then set approved_by_human: true and status: done. That unblocks t-002 which will brainstorm\
-    \ specific content ideas for whichever platforms you choose. You do not need to commit to all platforms\
-    \ \u2014 one or two is fine to start.\n"
+  approved_by_human: false
+  note: >
+    FOR SILAS: Platform research is complete — read
+    projects/digital-storefront/research/stores.md for the full comparison.
+    The short version: the recommendation is to start with Gumroad (direct PDF
+    sales, simple) + itch.io (indie RPGs, zines, coloring packs, experiments).
+    For print-on-demand merch, evaluate Printful vs Printify later once you
+    have a design. For STL files, try Cults first, MyMiniFactory for polished
+    collections. No accounts were created; this is research only.
+    TO APPROVE: Add a short note here saying which platforms sound right to you
+    (even just "yes, Gumroad + itch.io for now"), then set approved_by_human: true
+    and status: done. That unblocks t-002 which will brainstorm specific content
+    ideas for whichever platforms you choose. You do not need to commit to all
+    platforms — one or two is fine to start.
 - id: t-002
   milestone: m2
   title: Brainstorm content concepts for the chosen stores
@@ -76,7 +80,7 @@ tasks:
   gate_human: true
   approved_by_human: false
   note: "Produce DRAFT assets for the concepts Silas approved (design briefs, PDF drafts, STL specs/scripts\
-    \ \u2014 whatever the type needs), saved under products/. Do NOT upload or list anything. Ends needs-human\
+    \ — whatever the type needs), saved under products/. Do NOT upload or list anything. Ends needs-human\
     \ for Silas to review before anything is published.\n"
 - id: t-004
   milestone: m4
@@ -104,7 +108,7 @@ tasks:
   gate_human: true
   approved_by_human: false
   note: "ONLY for channels Silas has explicitly budgeted. Draft ad creative + targeting + spend plan in\
-    \ marketing/paid-<channel>.md. Absolutely no ad account changes or spend \u2014 this is a plan for\
+    \ marketing/paid-<channel>.md. Absolutely no ad account changes or spend — this is a plan for\
     \ Silas to execute or approve. Ends needs-human.\n"
 - id: t-006
   milestone: m2
@@ -114,6 +118,17 @@ tasks:
   updated: '2026-06-30T00:00:00Z'
   passes: 0
   stakes: reversible
+  note: >
+    FOR SILAS: An "Acts of Kindness" coloring book concept document is ready at
+    projects/digital-storefront/concepts/acts-of-kindness-coloring-book.md.
+    It has 12 page concepts (e.g. "Leave a kind note", "Hold the door", "Share
+    your lunch") with one-line prompts, a cover direction, and notes on who
+    the audience is (adults, all-ages, therapeutic/gift market).
+    TO APPROVE: Read the concept file. If you want the Worker to start creating
+    actual draft coloring pages from these concepts, set approved_by_human: true
+    and status: done. If you want to change the theme or direction first, add
+    a note here. Nothing gets published or uploaded either way — the next step
+    is just draft artwork, which also ends at needs-human before anything goes live.
   gate_human: true
   approved_by_human: true
 - id: t-007
@@ -128,4 +143,4 @@ tasks:
     Written PRODUCT-GAP-AUDIT.md. Summary: pdf-coloring has one approved concept
     (acts-of-kindness). pod-text-art, pdf-rpg, pdf-manual, stl-3d have no concept
     files yet. All platforms unblocked after t-001 approval. stl-3d is lowest priority
-    \u2014 needs design direction from Silas before any concept work makes sense.
+    — needs design direction from Silas before any concept work makes sense.

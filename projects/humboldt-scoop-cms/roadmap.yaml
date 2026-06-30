@@ -71,7 +71,19 @@ tasks:
     passes: 0
     stakes: reversible
     gate_human: true
-    approved_by_human: true
+    approved_by_human: false
+    note: >
+      FOR SILAS: A route card spec has been written at
+      projects/humboldt-scoop-cms/route-cards/SPEC.md. It defines what information
+      appears on a crew member's daily visit card: customer name, pet notes (name,
+      breed, temperament), yard notes, visit checklist, and gate-access placeholder.
+      Three sample dummy cards are included so you can see what it looks like.
+      There is also a note about a possible product path (selling a printable
+      route-card template to other small service businesses).
+      TO APPROVE: Read route-cards/SPEC.md. If the fields and approach look right
+      for the real Humboldt Scoop workflow, set approved_by_human: true and
+      status: done. If you want changes, add a note here with what to fix.
+      Nothing goes live until you approve; this is dummy data only.
 
   - id: t-004
     milestone: m1
