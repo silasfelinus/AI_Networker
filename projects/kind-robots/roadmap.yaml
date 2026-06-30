@@ -110,8 +110,8 @@ tasks:
   - id: t-005
     milestone: m3
     title: "Show task note text in conductor-page.vue task cards"
-    status: ready
-    owner: null
+    status: done
+    owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
@@ -125,8 +125,8 @@ tasks:
   - id: t-006
     milestone: m3
     title: "Surface stakes, depends_on, and approved_by_human in task detail"
-    status: ready
-    owner: null
+    status: done
+    owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
@@ -143,8 +143,8 @@ tasks:
   - id: t-007
     milestone: m3
     title: "Show relative 'updated' timestamp on task cards in conductor-page.vue"
-    status: ready
-    owner: null
+    status: done
+    owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
