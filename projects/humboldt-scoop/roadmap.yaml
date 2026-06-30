@@ -90,13 +90,25 @@ tasks:
   - id: t-005
     milestone: m2
     title: "Harden WordPress config defaults before staging"
-    status: ready
-    owner: null
-    updated: "2026-06-26T18:00:00Z"
+    status: done
+    owner: worker
+    updated: "2026-06-30T04:59:30Z"
     passes: 0
     stakes: reversible
     depends_on: t-003
     note: >
-      Review wp-config.php defaults after the local compose wrapper exists. Ensure auth
-      keys and salts come from environment for any shared/staging environment, and keep
-      deployment or DNS changes gated for Silas.
+      Completed in PR #48. WordPress config now requires environment-provided auth material
+      instead of committed fallback strings. Deployment and DNS remain gated for Silas.
+
+  - id: t-006
+    milestone: m2
+    title: "Remove fallback dev-credential defaults from compose.yaml auth key/salt entries"
+    status: done
+    owner: worker
+    updated: "2026-06-30T06:00:00Z"
+    passes: 0
+    stakes: reversible
+    depends_on: t-005
+    note: >
+      Completed in PR #50. Removed the compose fallback placeholders for local WordPress
+      auth material and clarified the local environment example. Deployment remains gated.

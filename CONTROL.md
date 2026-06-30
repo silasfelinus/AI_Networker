@@ -91,6 +91,16 @@ visible on the front end without creating a second source of truth.
 - t-001 gate removed 2026-06-30: Silas pre-approves the spec direction — no additional
   human approval needed after the Worker writes the task surface spec.
 
+### pinball-hero  (content)
+**Direction:** Create practical build plans for a high-quality, efficient, partly 3D-printed
+pinball machine. The final package should include parts lists, printable model specs/files,
+and instructions at multiple price points. Optimize for a Bambu Lab A1-class printer and
+comfortable/common off-the-shelf parts; flag safety, durability, and cost tradeoffs instead
+of pretending every part should be printed.
+**Notes:**
+- Keep the first cycle focused on architecture and constraints before sourcing or CAD work.
+- No purchasing, publishing, or safety-critical electrical recommendations without human review.
+
 ### brainstorm  (proposal)
 **Direction:** Generate a few strong, specific, buildable pitches each cycle for me to vote
 on — new products (within approved types), content series, revenue streams, and AI_Networker
@@ -100,6 +110,17 @@ upgrades. Quality over quantity. Don't repeat existing pitches.
   "coloring books: nature + whimsy". Add/replace anytime — this steers content pitches.)
 **Notes:**
 - (your notes)
+
+### career-transition  (content)
+**Direction:** Help me land a better-paying tech job that pays me for the AI and dev skills I
+already use as a hobby. Produce research, resume drafts, cover letter templates, and prep
+materials. HARD GATE: nothing goes out, nothing gets posted, no applications are sent without
+my explicit approval. Every task that produces outward-facing material ends at needs-human.
+**Notes:**
+- I've been coding since 1989 (TRS-80) and working with AI since 2001. Lead with that.
+- The casino dealer background is 11 years of financial reliability and high-stakes composure — frame it, don't bury it.
+- Remote-first roles, base >= $70k, AI-adjacent strongly preferred.
+- kind_robots (Nuxt 3 / Vue / Prisma / TypeScript) and conductor (multi-agent orchestration) are the portfolio anchors.
 
 ### conductor  (software)
 **Direction:** Improvements to the conductor / AI_Networker system itself — CI, scripts,
@@ -149,5 +170,5 @@ Start with the session data model (needs-human gate) before any play-mode code.
 - **Direction / notes:** agents read them next cycle. No script needed.
 - **Priority:** also update projects/priority.yaml (or tell an agent to sync it).
 - **Approve a gated task / pitch:** edit the task in its roadmap (`approved_by_human: true`,
-  `status: done`) or set a pitch's `status:` to approved/rejected. The resolver unblocks
+`status: done`) or set a pitch's `status:` to approved/rejected. The resolver unblocks
 dependents next cycle.

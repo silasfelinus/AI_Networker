@@ -39,6 +39,22 @@ if (!function_exists('getenv_docker')) {
 	}
 }
 
+if (!function_exists('getenv_docker_required')) {
+	function getenv_docker_required($env) {
+		$value = getenv_docker($env, '');
+		if ($value === '') {
+			header('HTTP/1.1 500 Internal Server Error');
+			die(sprintf(
+				'Missing required WordPress secret environment variable: %s. Set %s or %s_FILE before starting this site.',
+				htmlspecialchars($env, ENT_QUOTES, 'UTF-8'),
+				htmlspecialchars($env, ENT_QUOTES, 'UTF-8'),
+				htmlspecialchars($env, ENT_QUOTES, 'UTF-8')
+			));
+		}
+		return $value;
+	}
+}
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', getenv_docker('WORDPRESS_DB_NAME', 'wordpress') );
@@ -67,22 +83,24 @@ define( 'DB_COLLATE', getenv_docker('WORDPRESS_DB_COLLATE', '') );
 /**#@+
  * Authentication unique keys and salts.
  *
- * Change these to different unique phrases! You can generate these using
- * the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}.
+ * These must be supplied by environment variables (or *_FILE secret mounts) so shared and
+ * staging environments never reuse committed fallback values.
+ *
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}.
  *
  * You can change these at any point in time to invalidate all existing cookies.
  * This will force all users to have to log in again.
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         getenv_docker('WORDPRESS_AUTH_KEY',         '4dc9ed3afe9a4070a90768daacae00e3102c7b1c') );
-define( 'SECURE_AUTH_KEY',  getenv_docker('WORDPRESS_SECURE_AUTH_KEY',  'e30ce476e18db62df3bdb921b5e1e60d4348f201') );
-define( 'LOGGED_IN_KEY',    getenv_docker('WORDPRESS_LOGGED_IN_KEY',    '544e33d5583baa91aabafb86c40d1f12210d6138') );
-define( 'NONCE_KEY',        getenv_docker('WORDPRESS_NONCE_KEY',        '63edcc7c72309ba274432d518c69a1dc2e919442') );
-define( 'AUTH_SALT',        getenv_docker('WORDPRESS_AUTH_SALT',        'f25fbde13147c78d7bc286b48d99715bca4bb36c') );
-define( 'SECURE_AUTH_SALT', getenv_docker('WORDPRESS_SECURE_AUTH_SALT', '24c18f5aa9f8f8a9f64a23207b8591ba7ff51c9f') );
-define( 'LOGGED_IN_SALT',   getenv_docker('WORDPRESS_LOGGED_IN_SALT',   '907456d399b8c3f5e79e13082f05fc97ee39650e') );
-define( 'NONCE_SALT',       getenv_docker('WORDPRESS_NONCE_SALT',       'ffbd46d29fd54de4f40de8309ed9ebd86ef76aae') );
+define( 'AUTH_KEY',         getenv_docker_required('WORDPRESS_AUTH_KEY') );
+define( 'SECURE_AUTH_KEY',  getenv_docker_required('WORDPRESS_SECURE_AUTH_KEY') );
+define( 'LOGGED_IN_KEY',    getenv_docker_required('WORDPRESS_LOGGED_IN_KEY') );
+define( 'NONCE_KEY',        getenv_docker_required('WORDPRESS_NONCE_KEY') );
+define( 'AUTH_SALT',        getenv_docker_required('WORDPRESS_AUTH_SALT') );
+define( 'SECURE_AUTH_SALT', getenv_docker_required('WORDPRESS_SECURE_AUTH_SALT') );
+define( 'LOGGED_IN_SALT',   getenv_docker_required('WORDPRESS_LOGGED_IN_SALT') );
+define( 'NONCE_SALT',       getenv_docker_required('WORDPRESS_NONCE_SALT') );
 // (See also https://wordpress.stackexchange.com/a/152905/199287)
 
 /**#@-*/
