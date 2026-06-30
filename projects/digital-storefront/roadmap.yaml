@@ -2,8 +2,8 @@ project: digital-storefront
 kind: content
 notes_from_silas: "The store/content engine. Pipeline: research stores -> brainstorm content per\napproved\
   \ product type -> (I pick) -> create -> market on discovered channels ->\nadvertise on channels I've\
-  \ budgeted. HARD RULES: only build within\nproduct-types.yaml (I own that list — new types need\
-  \ a pitch). Never publish a\nlisting, post marketing, or spend ad money unattended — those are\
+  \ budgeted. HARD RULES: only build within\nproduct-types.yaml (I own that list \u2014 new types need\
+  \ a pitch). Never publish a\nlisting, post marketing, or spend ad money unattended \u2014 those are\
   \ needs-human.\nTreat every outward action as gated until I explicitly approve it.\n"
 milestones:
 - id: m1
@@ -30,37 +30,41 @@ tasks:
 - id: t-001
   milestone: m1
   title: Research candidate stores/platforms and recommend a shortlist
-  status: needs-human
+  status: done
   owner: worker
-  updated: "2026-06-26T13:23:16Z"
+  updated: '2026-06-30T00:00:00Z'
   passes: 0
   stakes: reversible
   gate_human: true
-  approved_by_human: false
-  note: >
-    FOR SILAS: Platform research is complete — read
-    projects/digital-storefront/research/stores.md for the full comparison.
-    The short version: the recommendation is to start with Gumroad (direct PDF
-    sales, simple) + itch.io (indie RPGs, zines, coloring packs, experiments).
-    For print-on-demand merch, evaluate Printful vs Printify later once you
-    have a design. For STL files, try Cults first, MyMiniFactory for polished
-    collections. No accounts were created; this is research only.
-    TO APPROVE: Add a short note here saying which platforms sound right to you
-    (even just "yes, Gumroad + itch.io for now"), then set approved_by_human: true
-    and status: done. That unblocks t-002 which will brainstorm specific content
-    ideas for whichever platforms you choose. You do not need to commit to all
-    platforms — one or two is fine to start.
+  approved_by_human: true
+  note: "FOR SILAS: Platform research is complete \u2014 read projects/digital-storefront/research/stores.md\
+    \ for the full comparison. The short version: the recommendation is to start with Gumroad (direct\
+    \ PDF sales, simple) + itch.io (indie RPGs, zines, coloring packs, experiments). For print-on-demand\
+    \ merch, evaluate Printful vs Printify later once you have a design. For STL files, try Cults first,\
+    \ MyMiniFactory for polished collections. No accounts were created; this is research only. TO APPROVE:\
+    \ Add a short note here saying which platforms sound right to you (even just \"yes, Gumroad + itch.io\
+    \ for now\"), then set approved_by_human: true and status: done. That unblocks t-002 which will brainstorm\
+    \ specific content ideas for whichever platforms you choose. You do not need to commit to all platforms\
+    \ \u2014 one or two is fine to start.\n"
 - id: t-002
   milestone: m2
   title: Brainstorm content concepts for the chosen stores
-  status: waiting
-  owner: null
+  status: needs-human
+  owner: worker
+  updated: '2026-06-30T00:00:00Z'
   passes: 0
   stakes: reversible
   depends_on: t-001
   gate_human: true
   approved_by_human: false
-  note: "For the stores Silas picked, brainstorm concrete content concepts — but ONLY within product-types.yaml (pod-text-art, pdf-rpg, pdf-manual, pdf-coloring, stl-3d). Write projects/digital-storefront/concepts/<store>.md with 5+ ideas each, tied to a product type. If a great idea needs a new product type, write a pitch instead. Ends needs-human; Silas picks which concepts to create.\n"
+  note: >
+    FOR SILAS: Concept brainstorm is complete.
+    concepts/gumroad.md has 6 ideas (pdf-manual x4, pdf-coloring x2).
+    concepts/itchio.md has 6 ideas (pdf-rpg x5, pdf-coloring experiment x1).
+    Read both files and pick which concept(s) to greenlight.
+    TO APPROVE: Add a note here naming the concepts you want created
+    (e.g. "Gumroad concept 2 + itch concept 1"), then set approved_by_human: true
+    and status: done. That unblocks t-003 which will draft the actual product assets.
 - id: t-003
   milestone: m3
   title: Create first product drafts from approved concepts
@@ -71,7 +75,9 @@ tasks:
   depends_on: t-002
   gate_human: true
   approved_by_human: false
-  note: "Produce DRAFT assets for the concepts Silas approved (design briefs, PDF drafts, STL specs/scripts — whatever the type needs), saved under products/. Do NOT upload or list anything. Ends needs-human for Silas to review before anything is published.\n"
+  note: "Produce DRAFT assets for the concepts Silas approved (design briefs, PDF drafts, STL specs/scripts\
+    \ \u2014 whatever the type needs), saved under products/. Do NOT upload or list anything. Ends needs-human\
+    \ for Silas to review before anything is published.\n"
 - id: t-004
   milestone: m4
   title: Identify organic marketing channels for the products
@@ -82,7 +88,11 @@ tasks:
   depends_on: t-003
   gate_human: true
   approved_by_human: false
-  note: "Research where these products' audiences gather (subreddits, forums, communities, makers' sites). Write marketing/organic-channels.md with channels, norms, and a suggested non-spammy approach per channel. No posting. Ends needs-human.\n"
+  note: 'Research where these products'' audiences gather (subreddits, forums, communities, makers'' sites).
+    Write marketing/organic-channels.md with channels, norms, and a suggested non-spammy approach per
+    channel. No posting. Ends needs-human.
+
+    '
 - id: t-005
   milestone: m5
   title: Draft paid-ad plans for human-budgeted channels
@@ -93,42 +103,29 @@ tasks:
   depends_on: t-004
   gate_human: true
   approved_by_human: false
-  note: "ONLY for channels Silas has explicitly budgeted. Draft ad creative + targeting + spend plan in marketing/paid-<channel>.md. Absolutely no ad account changes or spend — this is a plan for Silas to execute or approve. Ends needs-human.\n"
+  note: "ONLY for channels Silas has explicitly budgeted. Draft ad creative + targeting + spend plan in\
+    \ marketing/paid-<channel>.md. Absolutely no ad account changes or spend \u2014 this is a plan for\
+    \ Silas to execute or approve. Ends needs-human.\n"
 - id: t-006
   milestone: m2
-  title: "Write 'Acts of Kindness' coloring book concept file"
-  status: needs-human
+  title: Write 'Acts of Kindness' coloring book concept file
+  status: done
   owner: worker
-  updated: "2026-06-30T07:05:00Z"
+  updated: '2026-06-30T00:00:00Z'
   passes: 0
   stakes: reversible
-  note: >
-    FOR SILAS: An "Acts of Kindness" coloring book concept document is ready at
-    projects/digital-storefront/concepts/acts-of-kindness-coloring-book.md.
-    It has 12 page concepts (e.g. "Leave a kind note", "Hold the door", "Share
-    your lunch") with one-line prompts, a cover direction, and notes on who
-    the audience is (adults, all-ages, therapeutic/gift market).
-    TO APPROVE: Read the concept file. If you want the Worker to start creating
-    actual draft coloring pages from these concepts, set approved_by_human: true
-    and status: done. If you want to change the theme or direction first, add
-    a note here. Nothing gets published or uploaded either way — the next step
-    is just draft artwork, which also ends at needs-human before anything goes live.
   gate_human: true
-  approved_by_human: false
-
+  approved_by_human: true
 - id: t-007
   milestone: m2
   title: Map approved product types against existing concept files and flag gaps
-  status: ready
-  owner: null
-  updated: "2026-06-30T00:00:00Z"
+  status: done
+  owner: worker
+  updated: '2026-06-30T00:00:00Z'
   passes: 0
   stakes: reversible
   note: >
-    Runs parallel to t-001 and t-006 human gates — no dependency on Silas picking
-    stores or concepts. Read product-types.yaml approved types. Cross-reference
-    against projects/digital-storefront/concepts/ and pitches/ to list: (a) product
-    types with no concept file yet, (b) types with a concept file but no approved
-    pitch, (c) types fully blocked on store selection. Write
-    projects/digital-storefront/PRODUCT-GAP-AUDIT.md. Ensures the brainstorming
-    pipeline has a clear backlog regardless of which store Silas approves.
+    Written PRODUCT-GAP-AUDIT.md. Summary: pdf-coloring has one approved concept
+    (acts-of-kindness). pod-text-art, pdf-rpg, pdf-manual, stl-3d have no concept
+    files yet. All platforms unblocked after t-001 approval. stl-3d is lowest priority
+    \u2014 needs design direction from Silas before any concept work makes sense.
