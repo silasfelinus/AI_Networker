@@ -24,6 +24,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent
 PROCESS_DIR = REPO_ROOT / "projects" / "process"
+UNMATCHED_DIR = PROCESS_DIR / "unmatched"
 ART_GENERATE_FILE = REPO_ROOT / "projects" / "art-generate.yaml"
 ART_PROMPTS_FILE = REPO_ROOT / "projects" / "art-prompts.yaml"
 KIND_ROBOTS_ROOT = REPO_ROOT.parent / "kind_robots"
@@ -221,7 +222,13 @@ def distribute():
         match = lookup.get(fname) or infer_destination(fname)
 
         if not match:
-            print(f"  UNMATCHED  {fname}")
+            UNMATCHED_DIR.mkdir(parents=True, exist_ok=True)
+            dest = UNMATCHED_DIR / fname
+            if DRY_RUN:
+                print(f"  would move (unmatched)  {fname}  →  projects/process/unmatched/")
+            else:
+                shutil.move(str(src), dest)
+                print(f"  unmatched  {fname}  →  projects/process/unmatched/")
             unmatched.append(fname)
             continue
 
