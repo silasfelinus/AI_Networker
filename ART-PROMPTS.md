@@ -26,6 +26,7 @@ When asked for a batch, generate up to ten images in the same order as the queue
 - `engagement` — icon, card, hero → `projects/images/engagement-{type}.webp` in `silasfelinus/conductor`
 - `wishmaster` — icon, card, hero → `projects/images/wishmaster-{type}.webp` in `silasfelinus/conductor`
 - `media-watchlist` — icon → `projects/images/media-watchlist-icon.webp` in `silasfelinus/conductor`
+- `pinball-hero` — icon, card, hero → `projects/images/pinball-hero-{type}.webp` in `silasfelinus/conductor`
 
 **Inspiration images** (`projects/art-prompts.yaml` → `inspirations:`, 3 each):
 
@@ -146,6 +147,12 @@ These are not automatically queued for legacy projects. Generate them manually w
 - `kind-robots-inspiration-01.webp` — A grand Kind Robots hub where portals to every project world open across a luminous consortium floor, a diverse array of robots, humans, creatures, and companions navigating between sketching studios, storytelling tables, media archives, and orchestration towers, epic welcome key art, no text, no collage.
 - `kind-robots-inspiration-02.webp` — The Kind Robots world-tree: branching platforms where every project is a distinct zone — a pencil tower, a story map table, a film archive, an image factory, a voice relay station — interconnected by glowing paths, premium world-building illustration, no text, no collage.
 - `kind-robots-inspiration-03.webp` — A Kind Robots community gathering where agents, creators, reviewers, and users of all species interact across project portals, trade work tokens, and celebrate shipped milestones, warm cinematic consortium art, no text, no collage.
+
+### pinball-hero
+
+- `pinball-hero-icon.webp` — Premium app icon for Pinball Hero, a chrome pinball launching through a compact playfield arc with tiny 3D-printed bracket details and glowing bumper geometry, crisp readable silhouette, polished maker-product energy, no text, no logo, no watermark, no collage, square composition.
+- `pinball-hero-card.webp` — Professional portrait card illustration for Pinball Hero, a cozy maker workbench where a partly assembled tabletop pinball machine sits beside 3D printed parts, organized fasteners, wiring looms, and a Bambu A1-class printer in the background, cinematic practical-invention key art, no readable text, no logo, no watermark, no collage, 2:3 portrait composition.
+- `pinball-hero-hero.webp` — High-end wide hero illustration for Pinball Hero, a beautifully built DIY pinball machine with printed ramps, polished cabinet panels, luminous bumpers, tidy wiring, and modular price-tier part trays arranged around it, premium product and game design studio quality, no readable text, no logo, no watermark, no collage, 16:9 landscape composition.
 
 ### engagement
 
