@@ -65,18 +65,16 @@ tasks:
   - id: t-003
     milestone: m3
     title: "Write yard route calendar card spec (dummy data)"
-    status: claimed
+    status: needs-human
     owner: worker
-    updated: "2026-06-30T06:55:00Z"
+    updated: "2026-06-30T06:58:00Z"
     passes: 0
     stakes: reversible
     note: >
-      Add a dummy route-card export spec under
-      projects/humboldt-scoop-cms/route-cards/SPEC.md with fields
-      (customer name, neighborhood, pets, yard notes, gate details placeholder,
-      visit checklist), 2-3 sample cards filled with dummy data, and a brief
-      on how this could become a PDF manual/template product.
-      No real customer data. Ends needs-human for Silas to review.
+      Added projects/humboldt-scoop-cms/route-cards/SPEC.md with dummy route-card
+      fields, three sample cards, checklist guidance, and a PDF/manual template
+      product path. No real customer data, dispatch, billing, publishing, or
+      deployment was added. Human gate remains required before approval.
       Pitch ref: pitches/2026-06-26-yard-route-calendar-cards.md (approved).
     gate_human: true
     approved_by_human: false
