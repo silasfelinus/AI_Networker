@@ -25,8 +25,9 @@ tasks:
   - id: t-001
     milestone: m1
     title: "Draft voice command list"
-    status: ready
-    owner: null
+    status: needs-human
+    owner: worker
+    updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
     gate_human: true
@@ -62,15 +63,17 @@ tasks:
   - id: t-004
     milestone: m2
     title: "Audit kind_robots REST API endpoints for Alexa intent suitability"
-    status: ready
-    owner: null
+    status: done
+    owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
     note: >
-      Runs parallel to t-001's human gate. Read the kind_robots server/api/ directory
-      and list all endpoints that return information or accept commands relevant to
-      voice control: project status, todos (create/list), art requests, agent activity.
-      For each, note the HTTP method, required auth, and whether it fits a short
-      voice-command response (under 10 words). Write docs/kr-api-for-voice.md.
-      This makes the relay design (t-002) much faster once t-001 is approved.
+      Wrote docs/kr-api-for-voice.md. Mapped 14 endpoints across todos, projects,
+      conductor, and dreams. Key findings: GET/POST /api/todos require user JWT (not
+      static API key) — relay needs long-lived JWT or machine auth route. Conductor
+      endpoints (projects, pitch-vote, message, inbox) work cleanly with admin API key.
+      Dreams endpoint (public) good for project status readouts. Two gaps to pitch:
+      GET /api/conductor/status (short agent activity phrase) and GET /api/conductor/
+      pending-approvals (count of gated tasks). All 14 endpoints fit ≤10-word voice
+      response patterns with relay-side formatting.

@@ -1,101 +1,107 @@
-# Media Watchlist — structured personal media archive
 project: media-watchlist
 kind: software
+notes_from_silas: 'Parse and import Silas''s long-running log of books, games, movies, TV, comics,
 
-notes_from_silas: |
-  Parse and import Silas's long-running log of books, games, movies, TV, comics,
   and podcasts into structured data. Surface browse/filter views, stats, review
+
   editing, Letterboxd sync, Comic Vine enrichment, Tautulli history, and optional
+
   affiliate links.
 
+  '
 milestones:
-  - id: m1
-    title: "Source sample and schema plan"
-    weight: 30
-    status: not-started
-
-  - id: m2
-    title: "Importer design"
-    weight: 25
-    status: not-started
-
-  - id: m3
-    title: "Browse, filter, and stats UI"
-    weight: 25
-    status: not-started
-
-  - id: m4
-    title: "External enrichment integrations"
-    weight: 20
-    status: not-started
-
+- id: m1
+  title: Source sample and schema plan
+  weight: 30
+  status: not-started
+- id: m2
+  title: Importer design
+  weight: 25
+  status: not-started
+- id: m3
+  title: Browse, filter, and stats UI
+  weight: 25
+  status: not-started
+- id: m4
+  title: External enrichment integrations
+  weight: 20
+  status: not-started
 tasks:
-  - id: t-001
-    milestone: m1
-    title: "Parse media_list.md and propose import schema"
-    status: ready
-    owner: null
-    passes: 0
-    stakes: reversible
-    note: >
-      The raw log is at projects/media-watchlist/media_list.md. Format: plain text,
-      organized by medium headers (MOVIES, TV, BOOKS, NOVELLAE, AUDIOBOOKS, COMICS,
-      VIDEO GAMES). Each entry is "Title date" where date is m/dd (2026). Asterisks
-      (*) prefix entries. Parse all entries, identify format patterns and edge cases
-      (missing dates, asterisk meaning, issue numbers in comics, duration in
-      audiobooks), and propose a normalized DB schema in
-      projects/media-watchlist/SCHEMA-DRAFT.md. Cover fields: medium, title, creator
-      (where present), consumed_date, rating, notes, external IDs. No gate needed —
-      this is research and schema design only.
+- id: t-001
+  milestone: m1
+  title: Parse media_list.md and propose import schema
+  status: done
+  owner: worker
+  updated: '2026-06-30T00:00:00Z'
+  passes: 0
+  stakes: reversible
+  note: 'Written projects/media-watchlist/SCHEMA-PROPOSAL.md. Documents all format patterns across 7 media
+    types and 2 years (2025 and 2026). Identifies 10 edge cases (unknown dates, asterisk = starred, comics
+    have no dates, re-watches, multi-season TV, typo double-slash, duration format variations). Proposes
+    MediaEntry Prisma model with 15 fields + MediaType enum. Includes post-import validation checks and
+    5 recommended clarifying questions for Silas.
 
-  - id: t-002
-    milestone: m2
-    title: "Design parser normalization rules"
-    status: waiting
-    owner: null
-    passes: 0
-    stakes: reversible
-    depends_on: t-001
-    note: >
-      Define how raw entries normalize into medium, title, creator, year, consumed
-      date, rating, source, notes, and external IDs. Include ambiguous-entry handling.
+    '
+- id: t-002
+  milestone: m2
+  title: Design parser normalization rules
+  status: done
+  owner: worker
+  updated: "2026-06-30T00:00:00Z"
+  passes: 0
+  stakes: reversible
+  depends_on: t-001
+  note: 'Wrote projects/media-watchlist/PARSER-RULES.md. Covers all 7 media types (MOVIE, TV, BOOK, NOVELLA,
+    AUDIOBOOK, COMIC, VIDEO_GAME) with 2025 vs. 2026 format variants, field priority rules, ambiguous-entry
+    handling (double-slash typo, "(15th s)" duration, unknown dates, re-watches), and regex patterns.
+    Feeds into import_media.py implementation.
 
-  - id: t-003
-    milestone: m3
-    title: "Draft watchlist browse and stats UX"
-    status: waiting
-    owner: null
-    passes: 0
-    stakes: reversible
-    depends_on: t-001
-    note: >
-      Plan the first UI: browse by medium/year/rating/genre, yearly stats, genre
-      breakdowns, completion tracking, and a review editor that can stay private
-      until Silas approves publishing.
+    '
+- id: t-003
+  milestone: m3
+  title: Draft watchlist browse and stats UX
+  status: done
+  owner: worker
+  updated: "2026-06-30T00:00:00Z"
+  passes: 0
+  stakes: reversible
+  depends_on: t-001
+  note: 'Wrote projects/media-watchlist/BROWSE-UX.md. Covers 5 views: summary dashboard (stats bar + recent
+    entries + quick filter chips), browse/list (filter by year/type/starred/month/season, sort options,
+    compact cards), entry detail panel, stats view (yearly totals, by-type bars, month sparkline, audiobook
+    hours, pages read), and review editor (private-by-default markdown editor). Identifies 4 schema
+    additions needed: review, reviewPublic, rating, rewatch, externalId, externalUrl.
 
-  - id: t-004
-    milestone: m4
-    title: "Scope Letterboxd, Comic Vine, and Tautulli integrations"
-    status: waiting
-    owner: null
-    passes: 0
-    stakes: reversible
-    depends_on: t-001
-    note: >
-      Document the API/data requirements for Letterboxd import/export, Comic Vine
-      metadata enrichment, and Tautulli Plex watch-history backfill.
+    '
+- id: t-004
+  milestone: m4
+  title: Scope Letterboxd, Comic Vine, and Tautulli integrations
+  status: done
+  owner: worker
+  updated: "2026-06-30T00:00:00Z"
+  passes: 0
+  stakes: reversible
+  depends_on: t-001
+  note: 'Wrote projects/media-watchlist/INTEGRATIONS.md. Documents Letterboxd (CSV-only, no public REST
+    API), Goodreads (CSV-only, API shut down 2020), Comic Vine (REST API, free key, enrichment use case),
+    and Tautulli (local API, deferred). Defines per-service field mappings, rate limits, auth requirements,
+    and schema additions (externalId, externalUrl, publisher). All enrichment scripts are dry-run by
+    default with --commit flag for write operations.
 
-  - id: t-005
-    milestone: m2
-    title: "Cross-reference Silas's log format against Letterboxd/Goodreads export formats"
-    status: waiting
-    owner: null
-    updated: "2026-06-30T00:00:00Z"
-    passes: 0
-    stakes: reversible
-    depends_on: t-001
-    note: >
-      After t-001 proposes the schema, compare Silas's hand-written log format against
-      Letterboxd CSV and Goodreads CSV export shapes. Identify where the formats align
-      (can auto-import) vs. where they diverge (needs manual mapping or a one-time
-      conversion pass). This informs the importer normalization rules in t-002.
+    '
+- id: t-005
+  milestone: m2
+  title: Cross-reference Silas's log format against Letterboxd/Goodreads export formats
+  status: done
+  owner: worker
+  updated: "2026-06-30T00:00:00Z"
+  passes: 0
+  stakes: reversible
+  depends_on: t-001
+  note: 'Wrote projects/media-watchlist/FORMAT-COMPARISON.md. Compared Silas hand log against Letterboxd
+    CSV and Goodreads CSV export shapes. Key divergences: title punctuation (Letterboxd adds colons/subtitles),
+    release year vs. consumed year, Goodreads conflates NOVELLA/AUDIOBOOK as "book", rating scales differ
+    (LB: 0.5-5, GR: 0-5, log: none). Import rule: log is authoritative; external services fill gaps only,
+    never destructive overwrites. Recommends 2 schema additions (releaseYear, publisher).
+
+    '
