@@ -90,13 +90,12 @@ tasks:
   - id: t-005
     milestone: m2
     title: "Harden WordPress config defaults before staging"
-    status: review
+    status: done
     owner: worker
-    updated: "2026-06-30T04:54:14Z"
+    updated: "2026-06-30T04:59:30Z"
     passes: 0
     stakes: reversible
     depends_on: t-003
     note: >
-      Review wp-config.php defaults after the local compose wrapper exists. Ensure auth
-      keys and salts come from environment for any shared/staging environment, and keep
-      deployment or DNS changes gated for Silas.
+      Completed in PR #48. WordPress config now requires environment-provided auth material
+      instead of committed fallback strings. Deployment and DNS remain gated for Silas.
