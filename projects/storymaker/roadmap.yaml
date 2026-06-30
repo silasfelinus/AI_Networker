@@ -100,15 +100,16 @@ tasks:
   - id: t-006
     milestone: m1
     title: "Audit kind_robots Bots, Characters, Scenarios, and Chats models for session compatibility"
-    status: ready
-    owner: null
+    status: done
+    owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
     note: >
-      Runs parallel to t-001's human gate. Read the kind_robots Prisma schema and
-      relevant API routes for Bot, Character, Scenario, Reward, and Chat models.
-      Write docs/kr-model-audit.md listing: what fields each model has, what a
-      Storymaker session would need that's already there, and what's missing or would
-      require a backend pitch. This preloads the session model design (t-001) with
-      real data instead of guesses.
+      Wrote docs/kr-model-audit.md. All 5 models audited (Bot, Character, Scenario, Chat,
+      Reward). Rich and ready: narrator system (narrativeVoice, forgeIntro, NarratorThread),
+      character stat system (6 Rarity stats + level/XP + Rewards inventory), scenario
+      setting (intros/locations/genres/cast JSON/outputType enum), chat threading (originId
+      for session grouping), reward item system. Two must-pitch backend additions: (1)
+      StorySession model (lifecycle, participants, mode, status), (2) TurnChoice model
+      (branch option log). No MVP blockers in existing schema.
