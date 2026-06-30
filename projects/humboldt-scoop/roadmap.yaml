@@ -103,13 +103,12 @@ tasks:
   - id: t-006
     milestone: m2
     title: "Remove fallback dev-credential defaults from compose.yaml auth key/salt entries"
-    status: review
+    status: done
     owner: worker
-    updated: "2026-06-30T05:58:00Z"
+    updated: "2026-06-30T06:00:00Z"
     passes: 0
     stakes: reversible
     depends_on: t-005
     note: >
-      Removed Compose fallback defaults from all eight WORDPRESS_*_KEY / WORDPRESS_*_SALT
-      entries and updated .env.example to tell local users to generate unique values.
-      Do not deploy or touch DNS.
+      Completed in PR #50. Removed the compose fallback placeholders for local WordPress
+      auth material and clarified the local environment example. Deployment remains gated.
