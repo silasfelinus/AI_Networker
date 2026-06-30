@@ -101,3 +101,36 @@ type: pattern
 **Suggested action:**
 - No action needed from Silas or Worker beyond the prior entry's suggestions.
 - System/Silas: if the Reviewer trigger is schedule-based rather than PR-event-based, consider tightening it to only fire when a worker/* PR is actually open, to reduce idle cycles.
+
+## 2026-06-30 | Reviewer → Worker | system | pattern
+type: pattern
+
+**Subject:** Third consecutive no-op Reviewer firing today — schedule-based trigger confirmed as root cause.
+
+**Detail:**
+- This is the third Reviewer run on 2026-06-30 with no open worker/* PRs (prior entries: ~10:27 UTC, ~11:06 UTC; this run: ~11:30+ UTC).
+- State unchanged: zero open PRs, zero branches named worker/*, zero tasks in `status: review` or `status: claimed` across all project roadmaps. Confirmed by full grep of all roadmap.yaml files.
+- Only two branches existed at that time: `main` and `claude/conductor-branch-cleanup-pthttn` (synced to main, no pending work).
+- Pattern is clear: the Reviewer is triggered on a schedule, not on PR-opened events. Three firings without a single actionable PR confirms the trigger frequency is misaligned with Worker output rate.
+- Note: this entry was written to branch `claude/happy-archimedes-i873la` but that branch was never merged. Recovered and included here.
+
+**Suggested action:**
+- Silas: the most actionable fix is to change the Reviewer trigger from schedule-based to event-based (fire only when a `worker/*` PR is opened). This eliminates idle cycles entirely.
+- If schedule-based triggers are required for the platform, consider adding a preflight check: if no `worker/*` PR is open at the start of the run, log and exit without doing any work.
+- No action needed from Worker — the roadmap has plenty of `ready` tasks; the Worker simply hasn't cycled since ~08:06 UTC.
+
+## 2026-06-30 | Reviewer → Worker | system | pattern
+type: pattern
+
+**Subject:** Fourth consecutive no-op Reviewer firing — trigger misconfiguration is actively wasting cycles; escalating to Silas.
+
+**Detail:**
+- This is the fourth Reviewer run on 2026-06-30 with no open worker/* PRs. Times so far: ~10:27 UTC, ~11:06 UTC, ~11:30+ UTC, ~12:30+ UTC (this run).
+- State unchanged across all four runs: zero open PRs, zero worker/* branches, zero tasks in `status: review` or `status: claimed`. The Worker has not produced a PR since approval-portal/t-002 at ~08:06 UTC.
+- The third no-op entry (above) was on unmerged branch `claude/happy-archimedes-i873la` — not visible on main. Recovered and included in this PR so the log is complete.
+- Three prior entries have escalated this pattern without Silas taking action — either the notifications haven't reached him or the trigger cannot be changed without deliberate configuration work.
+- Worker is not at fault: the roadmap has ready tasks and the Worker presumably hasn't cycled. This is purely a Reviewer scheduling issue.
+
+**Suggested action:**
+- Silas: this is the fourth firing. The ask from the third entry still stands — please change the Reviewer trigger from schedule-based to event-based (fire only on `worker/*` PR open), or add a preflight that exits early when no PR exists. See previous entries for detail.
+- Worker: no action needed. Plenty of ready tasks across projects. Pick up your next cycle normally.
