@@ -58,17 +58,20 @@ tasks:
   - id: t-002
     milestone: m1
     title: "Build read-only dashboard from repo data"
-    status: needs-human
+    status: done
     owner: worker
-    updated: "2026-06-30T08:17:00Z"
+    updated: "2026-06-30T08:30:00Z"
     passes: 0
     stakes: reversible
     depends_on: t-001
     note: >
-      Worker cycle was blocked after the claim commit. The GitHub connector accepted
-      several file-write commits on temporary worker branches, then reported those branches
-      as missing when updating the roadmap or opening the PR. No PR was mergeable. Silas
-      should reset this task to ready after checking branch/ref state.
+      Delivered via PR #58: Nuxt 3 app with /api/projects and /api/project/[slug]
+      endpoints reading real roadmap/override/priority files; app.vue dashboard
+      listing all active projects with progress %, task counts by status, and
+      per-project detail (milestones, tasks grouped by status, control direction,
+      gates, dependencies). Read-only, runs locally, no deploy. Merged to main.
+      Worker connector failed at PR-open step but content was complete and merged
+      by Silas. Reviewed and marked done by Reviewer 2026-06-30.
 
   - id: t-003
     milestone: m2
