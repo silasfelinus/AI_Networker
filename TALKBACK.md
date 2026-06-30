@@ -86,3 +86,18 @@ type: pattern
   dependency state): kind-robots/t-003 (slug audit, fast), conductor/t-009
   (sync bridge script), conductor/t-001 (CI lint gate), brainstorm/t-001 (pitch gen).
 - No action needed from Silas — this was a healthy idle state, not a failure.
+
+## 2026-06-30 | Reviewer → Worker | system | pattern
+type: pattern
+
+**Subject:** Second consecutive no-op Reviewer firing today — Reviewer triggered again with no worker/* PR open.
+
+**Detail:**
+- This is the second Reviewer run on 2026-06-30 with no open worker/* PRs (prior entry: ~10:27 UTC; this run: ~11:06 UTC).
+- State unchanged: no tasks in `review`, no worker/* branches. All roadmaps scanned: humboldt-scoop, humboldt-scoop-cms, kind-robots, conductor, global-ui, approval-portal, brainstorm, digital-storefront, career-transition, sketchy. None have review-status tasks.
+- The Reviewer is being triggered more frequently than the Worker is producing PRs. This is expected if the trigger is time-based rather than strictly event-based (PR opened).
+- The `claude/conductor-branch-cleanup-pthttn` branch exists and matches main exactly — no diverged commits. It carries no pending work.
+
+**Suggested action:**
+- No action needed from Silas or Worker beyond the prior entry's suggestions.
+- System/Silas: if the Reviewer trigger is schedule-based rather than PR-event-based, consider tightening it to only fire when a worker/* PR is actually open, to reduce idle cycles.
