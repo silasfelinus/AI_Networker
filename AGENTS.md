@@ -85,6 +85,28 @@ dependents unblock — even for software. The Worker finishes such tasks at `sta
 Silas approves by setting `approved_by_human: true` and `status: done` in the roadmap. The
 resolver treats a gated task as still blocking until `approved_by_human: true`.
 
+### Hard vs soft needs-human
+
+`needs-human` has two flavors — agents must distinguish them:
+
+**Hard** (Silas must act before anything proceeds):
+- `gate_human: true` on the task
+- `stakes: outward-facing` or `stakes: irreversible`
+- Content or proposal kind reaching publication/delivery
+- Security flags requiring acknowledgement
+
+**Soft** (agent got stuck, no workaround found — but other work can continue):
+- Connector/tooling failure mid-task where content is complete
+- Unclear architectural direction without a blocking dependency
+- Access limitation that prevents verification but doesn't invalidate the work
+
+On a **soft** `needs-human`: set the task status, document the reason clearly in the task
+`note:`, then **immediately re-run task selection** and pick the next available `ready` task.
+Do not end the cycle — there is almost always other work. Only stop if every ready task is
+also blocked.
+
+On a **hard** `needs-human`: stop. Do not pick another task. Flag clearly for Silas.
+
 ## Security model — who can do what
 
 Every agent operates within a strict permission boundary. Acting outside it is a safety
@@ -340,6 +362,8 @@ What the Worker would do first if you approve.
 
 Side exits:
 - `blocked` — iteration budget exhausted (passes == 3)
-- `needs-human` — content/proposal/outward-facing/irreversible, or challenge escalated
+- `needs-human` — hard gate (gate_human/outward-facing/irreversible/content+proposal) OR soft
+  escalation (stuck, connector failure, unclear path). Hard: stop cycle. Soft: continue to
+  next ready task. Document which kind in the task `note:`.
 - `challenged` — Worker disputes Reviewer decision; always resolves to `needs-human` or back to `ready`
 - `waiting` — dependency not yet met
