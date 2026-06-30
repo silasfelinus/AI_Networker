@@ -28,8 +28,8 @@ overrides:
     priority: normal
 
   - slug: approval-portal
-    status: active
-    priority: normal
+    status: paused
+    priority: low
 
   - slug: digital-storefront
     status: active
@@ -88,3 +88,13 @@ overrides:
     status: active
     priority: normal
     kind: content
+
+  - slug: engagement
+    status: active
+    priority: normal
+    kind: software
+
+  - slug: wishmaster
+    status: active
+    priority: normal
+    kind: software
