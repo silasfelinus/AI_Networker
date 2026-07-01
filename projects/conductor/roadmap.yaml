@@ -188,8 +188,8 @@ tasks:
 - id: t-012
   milestone: m2
   title: "Add open-PR check to session startup sweep hook"
-  status: ready
-  owner: null
+  status: done
+  owner: worker
   updated: '2026-07-01T00:00:00Z'
   passes: 0
   stakes: reversible
