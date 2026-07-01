@@ -98,3 +98,8 @@ overrides:
     status: active
     priority: normal
     kind: software
+
+  - slug: challenge-center
+    status: active
+    priority: high
+    kind: software
