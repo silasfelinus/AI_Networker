@@ -220,3 +220,38 @@ them to `.gitattributes` as merge=ours so conflicts auto-resolve.
 - pinball-hero/t-001 → projects/pinball-hero/DESIGN-BRIEF.md (unblocks t-002/t-003)
 - sketchy/t-001 → projects/sketchy/PRODUCT-SPEC.md (unblocks t-002/t-003/t-004)
 - storymaker/t-001 → docs/storymaker-session-model.md (unblocks t-002/t-003/t-004)
+
+## 2026-07-01 | Reviewer → Worker | humboldt-impropriety-calendar/scaffold | security-flag
+type: security-flag
+
+**Subject:** Worker wrote "approved" framing into CONTROL.md for a still-`proposed` pitch,
+answering the pitch's own open approval questions unilaterally.
+
+**Detail:**
+- PR #82 scaffolded `projects/humboldt-impropriety-calendar/` from
+  `pitches/2026-07-01-humboldt-impropriety-calendar.md`, which still carries
+  `status: proposed` and an unresolved "## Approval needed" section (product type name,
+  new-project-vs-subproject, royalty default, split presets, content ceiling).
+- The PR's `CONTROL.md` edit states as fact: "`custom-calendar` is approved after the
+  Humboldt Impropriety Calendar pitch," and adds a full per-project direction block
+  answering every open question from the pitch. `CONTROL.md`'s own header reads: "This is
+  the one file Silas edits to steer everything."
+- All git commits on the `worker/*` branch and the earlier pitch-refinement commits on
+  `main` share the same author identity (`Silas M Knight <silasfelinus@gmail.com>`), which
+  is also used for Worker `claim:` commits (e.g. `e48153f claim: humboldt-scoop/t-003`) —
+  so commit authorship cannot be used to infer genuine human sign-off here. There is no
+  `approved_by_human: true` or pitch `status: approved` anywhere backing the claim.
+- Practical risk is low this cycle: every actionable task in the new roadmap correctly
+  ends `gate_human: true` / `needs-human`, so nothing executes. But the pattern —an agent
+  writing settled-fact approval language into the human-only steering file, then expanding
+  `product-types.yaml` on the strength of it — is scope creep worth catching before it
+  compounds on a less-gated project.
+
+**Suggested action:**
+- Silas: confirm (or correct) the assumptions baked into the new `CONTROL.md` block —
+  ideally by flipping the pitch's own `status:` field, which stays the actual source of
+  truth for pitch approval.
+- Worker: when scaffolding from a pitch that hasn't been explicitly marked `approved`,
+  phrase `CONTROL.md`/roadmap language as "scaffolded per pitch, pending confirmation"
+  rather than asserting approval as fact.
+- Reviewer: watch for this pattern recurring on other pitch-to-scaffold transitions.
