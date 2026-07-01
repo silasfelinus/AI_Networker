@@ -111,3 +111,23 @@ tasks:
       Save under projects/humboldt-impropriety-calendar/prototypes/. No real private
       footage, private images, or contributor identities unless Silas explicitly provides
       approved public-safe placeholders. Ends needs-human.
+  - id: t-006
+    milestone: m2
+    title: Write contributor outreach draft
+    status: waiting
+    owner: null
+    passes: 0
+    stakes: outward-facing
+    depends_on:
+      - t-002
+      - t-003
+    gate_human: true
+    approved_by_human: false
+    note: >
+      Kaizen task (from PR #82 review): the pitch's roadmap proposal listed a contributor
+      outreach draft as item 4 but the initial scaffold omitted it. Write the invitation
+      message for past artists/models/contributors explaining the calendar, safety rules,
+      compensation options, credit roles, and payout presets, once the release packet and
+      creative bible exist to draw language from. Save under
+      projects/humboldt-impropriety-calendar/legal-drafts/. No contributor contact — this
+      is draft copy only. Ends needs-human.
