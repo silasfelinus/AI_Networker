@@ -61,15 +61,17 @@ tasks:
   - id: t-003
     milestone: m3
     title: "Specify how generated URLs map back to projects"
-    status: waiting
-    owner: null
+    status: review
+    owner: worker
+    updated: "2026-07-01T00:00:00Z"
     passes: 0
     stakes: reversible
     depends_on: t-001
     note: >
-      Define whether generated outputs are committed to projects/images, stored as
-      ArtImage records, or written as handoff notes. Keep binaries out of agent runs
-      unless Silas explicitly approves that workflow.
+      Created projects/art-generator-connect/URL-MAPPING.md — specifies the canonical
+      URL pattern, project art flow (ART-PROMPTS.md → generation → projects/images/
+      commit), general image flow (URL reference only, no binary commit), and
+      slug→filename convention.
 
   - id: t-004
     milestone: m4
