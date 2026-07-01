@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-build_digest.py — daily digest for AI_Networker across all projects + pitches.
+build_digest.py — daily digest for Conductor across all projects + pitches.
 
 Reads every projects/*/roadmap.yaml (skipping _template), scans pitches/ for items
 awaiting Silas, plus recent git history. Prints a JSON digest for the emailer.
@@ -63,7 +63,7 @@ def time_greeting():
     date_str = datetime.date.today().strftime("%A, %B %-d")
     prompt = (
         f"Write a single short greeting for Silas Knight, a creative developer who runs an "
-        f"AI coordination system called AI_Networker on the Humboldt coast. "
+        f"AI coordination system called Conductor on the Humboldt coast. "
         f"It's {tod} on {date_str}. "
         f"Be warm, a little funny, and specific — reference the time of day, the coast, robots, "
         f"or his work. One or two sentences max. No quotes around your response."
@@ -141,13 +141,18 @@ def autonomous_work(since):
             out.append(f"[Worker PR merged] {pr_ref}")
     return out
 
-def progress(milestones):
+def progress(milestones, tasks=None):
+    tasks = tasks or []
     total = sum(m.get("weight", 0) for m in milestones)
-    if total == 0:
-        return 0
     done = sum(m.get("weight", 0) for m in milestones if m.get("status") == "done")
     partial = sum(m.get("weight", 0) * 0.5 for m in milestones if m.get("status") == "in-progress")
-    return round((done + partial) / total * 100)
+    if total and (done + partial) > 0:
+        return round((done + partial) / total * 100)
+    # Fall back to task-completion ratio when milestones are all not-started.
+    if tasks:
+        done_t = sum(1 for t in tasks if t.get("status") == "done")
+        return round(done_t / len(tasks) * 100)
+    return 0
 
 def scan_pitches():
     out = []
@@ -192,7 +197,7 @@ def main():
         projects.append({
             "name": name,
             "kind": rm.get("kind", "software"),
-            "progress_pct": progress(milestones),
+            "progress_pct": progress(milestones, tasks),
             "milestones": [{"title": m["title"], "status": m["status"]} for m in milestones],
             "needs_attention": [
                 f'{name}/{t["id"]}: {t["title"]} ({t.get("status")})'
