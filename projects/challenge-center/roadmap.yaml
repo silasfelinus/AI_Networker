@@ -2,9 +2,9 @@ project: challenge-center
 kind: software
 
 notes_from_silas: |
-  A competitive benchmark arena where AI agents from two teams face off on creative and
-  generative tasks. Silas runs conductor (silasfelinus/conductor — Claude-based agents);
-  his brother runs port0s (atomantic/port0s or silasfelinus/portos — different agent stack).
+  A personal benchmark arena for Silas's two agent stacks to compete on creative and
+  generative tasks. Conductor (silasfelinus/conductor) runs Claude-based agents; port0s
+  (silasfelinus/portos) runs a different agent stack. Both are Silas's own projects.
 
   Core mechanic: issue a challenge prompt → agents produce an artifact → Kind Robots users
   vote via reactions (LOVED/CLAPPED/BOOED/HATED) → leaderboard aggregates scores.
@@ -19,7 +19,6 @@ notes_from_silas: |
   Judging: reactions on ChallengeSubmission entities (reuse KR reaction system).
   Leaderboard: aggregate net reaction scores per agent across all challenges.
   Kind Robots is the database, voting platform, and display layer.
-  Conductor is the orchestration layer: challenge specs, runner scripts, agent dispatch.
 
   Agent identity: each competing agent registers as a Bot record in kind_robots so
   reaction aggregation can use existing Bot→Reaction infrastructure.
@@ -27,9 +26,7 @@ notes_from_silas: |
   Cross-repo split:
     - kind_robots: new Prisma models, API routes, seeded challenge library, voting UI
     - conductor: challenge runner scripts, agent dispatch tooling, this roadmap
-
-  Port0s integration requires Silas to broker the connection with his brother —
-  flag any port0s tasks as needs-human so he can coordinate.
+    - portos: its own submission script (separate repo, same pattern as conductor's)
 
 milestones:
   - id: m1
@@ -97,21 +94,15 @@ tasks:
     owner: null
     passes: 0
     stakes: reversible
-    gate_human: true
     note: >
       Create Bot records in kind_robots (via seed script or API) for each competing agent:
         - slug: "conductor-claude", name: "Conductor (Claude)", BotType: "CHALLENGE_AGENT",
           designer: "silasfelinus", description: "Claude-powered agent from silasfelinus/conductor"
-        - slug: "portos-agent", name: "Port0s Agent", BotType: "CHALLENGE_AGENT",
-          designer: "atomantic", description: "Agent from atomantic/port0s"
-          (leave details for Silas to fill in — bot intro, avatar, model)
+        - slug: "portos-agent", name: "Port0s", BotType: "CHALLENGE_AGENT",
+          designer: "silasfelinus", description: "Agent from silasfelinus/portos"
 
       Write the seed as scripts/seed_challenge_bots.ts (or .py) in kind_robots.
       These Bot records become the identity anchor for all leaderboard aggregation.
-
-      FOR SILAS: The port0s Bot entry needs your brother's input on the agent name,
-      model, and avatar. Fill in what you can and set approved_by_human: true once
-      the conductor Bot is created. The port0s Bot can be updated later.
 
   # ── M2: API & challenge library ──────────────────────────────────────────────────
 
@@ -256,22 +247,24 @@ tasks:
 
   - id: t-009
     milestone: m4
-    title: "Coordinate port0s agent API integration with brother"
-    status: ready
+    title: "Write challenge submission script in silasfelinus/portos"
+    status: waiting
+    depends_on: t-008
     owner: null
     passes: 0
     stakes: reversible
-    gate_human: true
     note: >
-      FOR SILAS: This task is a coordination gate — only you can broker this.
-      Your brother's agent stack (atomantic/port0s or silasfelinus/portos) needs to:
-        1. Know the challenge submission endpoint: POST /api/challenges/[slug]/submissions
-        2. Have a bot record in kind_robots (from t-002)
-        3. Have a KR_API_TOKEN with permission to POST submissions
-      Share the API spec (from t-003) and the bot slug "portos-agent" with your brother.
-      He can use any HTTP client — no conductor tooling required on his end.
-      Once you've shared the spec and he acknowledges, set approved_by_human: true
-      and status: done. t-010 depends on this.
+      In silasfelinus/portos, add a challenge submission script mirroring the conductor one.
+      Usage: (whatever invocation pattern portos uses) challenge_submit <challenge-slug>
+      Steps:
+        1. Fetch challenge from KR API (GET /api/challenges/<slug>)
+        2. Pass promptText to the portos agent
+        3. Collect agent output
+        4. POST to /api/challenges/<slug>/submissions with botSlug "portos-agent" + output
+        5. Return submission id
+      Reads KR_API_TOKEN and KR_BASE_URL from env (same vars as conductor).
+      Worker should look at silasfelinus/portos to understand its agent invocation pattern
+      before writing this — don't assume it matches conductor's.
 
   - id: t-010
     milestone: m4
