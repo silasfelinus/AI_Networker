@@ -55,6 +55,9 @@ def git(*args: str, check: bool = True) -> str:
 def git_config_bot() -> None:
     git("config", "user.name", os.environ.get("GIT_USER_NAME", "reviewer-bot"))
     git("config", "user.email", os.environ.get("GIT_USER_EMAIL", "reviewer-bot@users.noreply.github.com"))
+    # Define the "ours" merge driver used by .gitattributes for auto-generated files.
+    # "true" exits 0 without touching the file, keeping the rebase-upstream (main's) version.
+    git("config", "merge.ours.driver", "true")
 
 
 # ── GitHub API ────────────────────────────────────────────────────────────────
