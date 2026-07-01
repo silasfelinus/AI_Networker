@@ -29,15 +29,16 @@ milestones:
     status: not-started
 
 tasks:
-  - id: t-001
+    - id: t-001
     milestone: m1
     title: "Document kind_robots art API request and response shape"
-    status: needs-human
+    status: done
     owner: worker
     updated: "2026-06-30T00:00:00Z"
     passes: 0
     stakes: reversible
     gate_human: true
+    approved_by_human: true
     note: >
       Read the existing kind_robots SD and ComfyUI art generation endpoints and
       document the request fields, auth requirements, response shape, polling
