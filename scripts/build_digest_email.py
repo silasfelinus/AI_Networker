@@ -43,7 +43,7 @@ def build_payload(digest):
     html_content = f"""
     <p style="font-size:1.15em;color:#444;margin-bottom:4px">{greeting}</p>
     {spark_html}
-    <h2>AI_Networker — Daily Digest ({digest_date})</h2>
+    <h2>Conductor — Daily Digest ({digest_date})</h2>
     <h3>🗳️ Awaiting your vote (pitches)</h3>{ul(digest['pitches_awaiting_vote'] or ['(no pitches waiting)'])}
     <h3>📋 Activity in last 24h</h3>{ul(activity_since or ['(nothing recorded — most work may have landed earlier)'])}
     <h3>🤖 What your agents did autonomously</h3>{ul(autonomous or ['(no autonomous activity in this window)'])}
@@ -53,7 +53,7 @@ def build_payload(digest):
     """
 
     return {
-        "subject": f"AI_Networker Digest {digest['date']}",
+        "subject": f"Conductor Digest {digest['date']}",
         "htmlContent": html_content,
     }
 

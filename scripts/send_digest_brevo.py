@@ -25,7 +25,7 @@ def main() -> int:
 
     payload["sender"] = {
         "email": os.environ["DIGEST_FROM"],
-        "name": os.environ.get("DIGEST_FROM_NAME") or "AI_Networker",
+        "name": os.environ.get("DIGEST_FROM_NAME") or "Conductor",
     }
     payload["to"] = [
         {
