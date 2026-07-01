@@ -70,14 +70,16 @@ The default payout interface should let each month choose a preset, then adjust 
 
 Suggested presets:
 
-- **Model-led portrait:** 70% model(s), 30% artist/photographer.
-- **Balanced collaboration:** 50% model(s), 30% artist/photographer, 20% director/producer.
-- **Photographer/art-led image:** 40% model(s), 50% artist/photographer, 10% director/producer.
-- **Directed scene:** 45% model(s), 25% artist/photographer, 30% director/producer.
+- **Model-led portrait:** 70% model(s), 30% artist/photographer/director pool.
+- **Balanced collaboration:** 50% model(s), 50% artist/photographer/director pool.
+- **Image-maker-led feature:** 40% model(s), 60% artist/photographer/director pool.
+- **Director-led scene:** 45% model(s), 55% artist/photographer/director pool.
 - **Group/community month:** split equally across named approved contributors, unless they choose a custom split.
 - **Historical homage:** custom split required, because the represented contribution may not map cleanly to model/photographer roles.
 
-Example: January has 1/20 of net profit. If January uses the balanced collaboration preset, the January model pool receives 0.5/20, the artist/photographer pool receives 0.3/20, and the director/producer pool receives 0.2/20.
+The artist/photographer/director pool can be split internally per month. Examples: photographer-only, artist-only, director-only, equal artist/photographer/director, or custom percentages signed by everyone in that month's ledger.
+
+Example: January has 1/20 of net profit. If January uses the balanced collaboration preset, the January model pool receives 0.5/20 and the artist/photographer/director pool receives 0.5/20. If that month has two models and one photographer-director, the model pool can be split 50/50 between the two models, while the photographer-director receives the other half.
 
 ### Flat fee and hybrid options
 
