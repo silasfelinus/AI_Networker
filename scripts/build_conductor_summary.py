@@ -24,6 +24,7 @@ import os
 import sys
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 try:
     import yaml
@@ -216,6 +217,71 @@ def fetch_todos(token: str | None) -> list:
         return []
 
 
+# ── Art queue + image pipeline ───────────────────────────────────────────────
+
+def fetch_art_queue() -> dict:
+    """Count pending art generation requests and images waiting to be distributed."""
+    # Images sitting in projects/process/ not yet moved to their target repos
+    process_dir = Path("projects/process")
+    pending_images = []
+    if process_dir.exists():
+        for p in process_dir.rglob("*"):
+            if p.is_file() and p.suffix.lower() in {".webp", ".png", ".jpg", ".jpeg"} and p.name != ".gitkeep":
+                pending_images.append(p.name)
+
+    # Active generation queue (items ready to send to the image generator right now)
+    active_queue = 0
+    try:
+        gen_data = yaml.safe_load(Path("projects/art-generate.yaml").read_text()) or {}
+        active_queue = len(gen_data.get("images", []))
+    except Exception:
+        pass
+
+    # Full prompt catalog — count entries that haven't been generated yet
+    pending_prompts = 0
+    try:
+        prompts_data = yaml.safe_load(Path("projects/art-prompts.yaml").read_text()) or {}
+        for section in ("images", "inspirations", "requests"):
+            entries = prompts_data.get(section) or []
+            for entry in entries:
+                if isinstance(entry, dict):
+                    for variant in ("icon", "card", "hero"):
+                        v = entry.get(variant)
+                        if isinstance(v, dict) and not v.get("done"):
+                            pending_prompts += 1
+                    if entry.get("image_path") and not entry.get("done"):
+                        pending_prompts += 1
+    except Exception:
+        pass
+
+    return {
+        "images_to_distribute": len(pending_images),
+        "images_waiting": pending_images[:5],
+        "active_gen_queue": active_queue,
+        "pending_prompts": pending_prompts,
+    }
+
+
+def fetch_vercel_status(token: str | None) -> dict:
+    """Get latest Vercel deployment state for kind_robots via GitHub Deployments API."""
+    raw = _gh("repos/silasfelinus/kind_robots/deployments", token, {"per_page": "5"})
+    if not isinstance(raw, list) or not raw:
+        return {"state": "unknown"}
+    latest = raw[0]
+    dep_id = latest.get("id")
+    statuses = _gh(
+        f"repos/silasfelinus/kind_robots/deployments/{dep_id}/statuses", token, {"per_page": "1"}
+    )
+    state = "unknown"
+    if isinstance(statuses, list) and statuses:
+        state = statuses[0].get("state", "unknown")
+    return {
+        "state": state,
+        "environment": latest.get("environment", "?"),
+        "age_hours": round(_age_hours(latest.get("created_at", "")), 1),
+    }
+
+
 # ── Claude assessment ────────────────────────────────────────────────────────
 
 SYSTEM = """\
@@ -225,7 +291,8 @@ You run every hour to assess the health of two GitHub repos:
 - kind_robots (the main app and public-facing service)
 
 Review the state data and produce a brief, scannable report. Your job:
-1. Identify real signals: CI failures, blocked tasks, needs-human gates, stale PRs, open todos.
+1. Identify real signals: CI failures, Vercel deploy failures, blocked tasks, needs-human gates,
+   stale PRs, open todos, images waiting to distribute, pending art generation queue.
 2. Ignore noise: chore commits, skip-ci, bot status refreshes.
 3. Decide: does anything need Silas's attention, or is the autonomous loop running smoothly?
 
@@ -235,7 +302,7 @@ Output format (tight markdown, no preamble):
   Reference exact IDs (e.g. conductor/t-001, PR #42, workflow "CI").
 - If all clear: one summary sentence.
 - Always end with:
-  `**Stats:** {ready} ready | {waiting} waiting | {blocked} blocked | {needs-human} needs-human | {todos} open todos`
+  `**Stats:** {ready} ready | {waiting} waiting | {blocked} blocked | {needs-human} needs-human | {todos} open todos | {images} images to distribute | {queue} in gen queue`
 
 Under 250 words. No filler.
 """
@@ -282,6 +349,8 @@ def assess(state: dict) -> str:
 def _fallback(state: dict) -> str:
     """Rule-based summary when Claude is unavailable."""
     rm = state.get("roadmap", {})
+    art = state.get("art_queue", {})
+    vercel = state.get("vercel", {})
     items = []
 
     for r in state.get("repos", []):
@@ -292,6 +361,12 @@ def _fallback(state: dict) -> str:
                 f"**Stale worker PR** #{pr['number']} in `{r['repo']}` "
                 f"({pr['age_hours']}h old): Reviewer should assess."
             )
+
+    if vercel.get("state") not in ("success", "unknown"):
+        items.append(
+            f"**Vercel deploy** `{vercel.get('environment', '?')}` is `{vercel.get('state')}` "
+            f"({vercel.get('age_hours', '?')}h ago): check Vercel dashboard."
+        )
 
     for t in rm.get("blocked", []):
         items.append(
@@ -308,11 +383,23 @@ def _fallback(state: dict) -> str:
         items.append(
             f"**Open todo** [{todo.get('priority')}] #{todo.get('id')}: {todo.get('title')}"
         )
+    if art.get("images_to_distribute", 0) > 0:
+        items.append(
+            f"**Images to distribute:** {art['images_to_distribute']} file(s) in projects/process/ — "
+            "run `python scripts/distribute_images.py`."
+        )
+    if art.get("active_gen_queue", 0) > 0:
+        items.append(
+            f"**Art generation queue:** {art['active_gen_queue']} item(s) in projects/art-generate.yaml "
+            "ready to send to the image generator."
+        )
 
     stats = (
         f"**Stats:** {rm.get('ready', 0)} ready | {rm.get('waiting', 0)} waiting | "
         f"{len(rm.get('blocked', []))} blocked | {len(rm.get('needs_human', []))} needs-human | "
-        f"{len(state.get('open_todos', []))} open todos"
+        f"{len(state.get('open_todos', []))} open todos | "
+        f"{art.get('images_to_distribute', 0)} images to distribute | "
+        f"{art.get('active_gen_queue', 0)} in gen queue"
     )
 
     if not items:
@@ -363,11 +450,19 @@ def main() -> None:
     print("  fetching todos...", file=sys.stderr)
     todos = fetch_todos(kr_token)
 
+    print("  checking art queue...", file=sys.stderr)
+    art_queue = fetch_art_queue()
+
+    print("  checking vercel status...", file=sys.stderr)
+    vercel = fetch_vercel_status(kr_token)
+
     state = {
         "as_of": as_of,
         "repos": repos,
         "roadmap": roadmap,
         "open_todos": todos,
+        "art_queue": art_queue,
+        "vercel": vercel,
     }
 
     print("  assessing...", file=sys.stderr)
