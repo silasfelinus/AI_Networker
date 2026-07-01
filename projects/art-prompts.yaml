@@ -200,3 +200,15 @@ requests:
     style, no text
 
     '
+  - id: "conductor-pinball-hero-hero-2345b01d"
+    source: "kind-robots-missing-image"
+    status: "pending"
+    target_repo: "silasfelinus/conductor"
+    image_path: "projects/images/pinball-hero-hero.webp"
+    source_url: "https://raw.githubusercontent.com/silasfelinus/conductor/main/projects/images/pinball-hero-hero.webp"
+    page_url: "https://kind-robots.vercel.app/conductor"
+    variant: "hero"
+    size: "1280x720"
+    label: "pinball-hero"
+    prompt: >
+      wide cinematic hero image for pinball-hero, expressive scene with clear atmosphere and personality, no text, 16:9 landscape composition
