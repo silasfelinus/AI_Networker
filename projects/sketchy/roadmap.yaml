@@ -45,15 +45,18 @@ tasks:
     title: "Draft Sketchy product spec and app-owned schema"
     status: needs-human
     owner: worker
-    updated: "2026-06-30T00:00:00Z"
+    updated: "2026-07-01T00:00:00Z"
     passes: 0
     stakes: reversible
     gate_human: true
     note: >
-      Write a product/spec document for Sketchy covering the assignment loop, user skill
-      calibration, AI critique flow, free/paid request limits, token integration with Kind
-      Robots, and the app-owned schema. Keep the shared Kind Robots backend read-only; any
-      needed shared-backend change should become a pitch instead of direct implementation.
+      FOR SILAS: projects/sketchy/PRODUCT-SPEC.md contains the product spec and app-owned schema.
+      It covers the drawing assignment loop, user skill calibration, AI critique flow (Claude Vision
+      as primary engine per docs/ai-critique-apis.md), free/paid request limits, and Kind Robots
+      token integration. Any shared-backend changes are flagged as pitches, not direct edits.
+      TO APPROVE: Read projects/sketchy/PRODUCT-SPEC.md. Set approved_by_human: true and
+      status: done here. Unblocks: sketchy/t-002 (skill ladder), t-003 (AI critique rubric),
+      t-004 (token tiers).
 
   - id: t-002
     milestone: m2

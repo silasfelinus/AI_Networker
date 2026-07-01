@@ -54,10 +54,12 @@ tasks:
     owner: worker
     passes: 0
     stakes: reversible
-    updated: "2026-06-30T00:00:00Z"
+    updated: "2026-07-01T00:00:00Z"
     note: >
-      Read the Composition model in schema.prisma. Write a short scope doc
-      (projects/wishmaster/scope.md) covering: what Composition was intended to
-      be, what Wishmaster needs it to be, and the minimal diff to make it useful.
-      No code changes — just the doc. Set status: needs-human when done.
+      FOR SILAS: projects/wishmaster/scope.md is the Composition schema audit and Wishmaster
+      scope doc. It covers what Composition was designed for, what Wishmaster needs it to do
+      (structured output template for wish fulfillment), and the minimal schema delta required.
+      No code was changed — research and planning only.
+      TO APPROVE: Read projects/wishmaster/scope.md. Set approved_by_human: true and status: done
+      here. Unblocks: wishmaster/t-002 (Wishmaster bot interface design).
     gate_human: true

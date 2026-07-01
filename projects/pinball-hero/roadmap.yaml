@@ -38,13 +38,16 @@ tasks:
     owner: worker
     passes: 0
     stakes: reversible
-    updated: "2026-06-30T00:00:00Z"
+    updated: "2026-07-01T00:00:00Z"
     gate_human: true
     note: >
-      Produce a first design brief for a compact, durable, partly 3D-printed pinball machine.
-      Define the target cabinet/playfield size, mechanical scope, what should be printed vs
-      purchased, Bambu A1 print constraints, safety constraints, and the likely build variants.
-      Include assumptions and open questions for Silas before downstream BOM/model work begins.
+      FOR SILAS: projects/pinball-hero/DESIGN-BRIEF.md is the design brief. It defines the
+      target cabinet/playfield size, mechanical scope, what to 3D print vs buy (with Bambu A1
+      print constraints), safety flags, and outlines budget and premium build variants.
+      Includes open questions for your direction before BOM/model work begins.
+      TO APPROVE: Read projects/pinball-hero/DESIGN-BRIEF.md and add any direction changes
+      as a note here. Set approved_by_human: true and status: done. Unblocks: pinball-hero/t-002
+      (BOM tiers research), t-003 (3D printable model spec).
 
   - id: t-002
     milestone: m2

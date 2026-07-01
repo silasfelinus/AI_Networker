@@ -74,16 +74,16 @@ tasks:
   title: Write SECURITY-MANAGER.md threat model and audit runbook
   status: needs-human
   owner: worker
-  updated: "2026-06-30T00:00:00Z"
+  updated: "2026-07-01T00:00:00Z"
   passes: 0
   stakes: needs-human
   gate_human: true
-  note: 'Create SECURITY-MANAGER.md at repo root. Define the security manager role, threat model, protected
-    assets, severity ladder, escalation rules, and safe automation boundaries. Explicitly cover Dreams,
-    projects, private files, family-only access, agent write access, source-code rewrite risk, Vercel,
-    GitHub Actions, secrets, production data, and deployment gates. This is a policy/runbook task only;
-    do not change live auth, secrets, deploys, billing, DNS, or production data. Leave it needs-human
-    until Silas approves the boundary model.
+  note: 'FOR SILAS: SECURITY-MANAGER.md is at the repo root. It defines the security manager
+    role, threat model covering Dreams/projects/private files/family-only access/agent write
+    boundaries, a severity ladder, and safe automation rules for agents (Vercel, GitHub Actions,
+    secrets, production data, deployment gates). No live auth, secrets, or deploys were touched.
+    TO APPROVE: Read SECURITY-MANAGER.md. Set approved_by_human: true and status: done in this
+    task. Unblocks: conductor/t-005 (authz regression tests).
 
     '
 - id: t-005

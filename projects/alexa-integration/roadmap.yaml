@@ -27,14 +27,18 @@ tasks:
     title: "Draft voice command list"
     status: needs-human
     owner: worker
-    updated: "2026-06-30T00:00:00Z"
+    updated: "2026-07-01T00:00:00Z"
     passes: 0
     stakes: reversible
     gate_human: true
     note: >
-      Draft the first command list and sample phrases for creating todos, checking
-      project status, reviewing approvals, requesting art, and getting an agent
-      activity summary. Leave the result for Silas to approve before build work.
+      FOR SILAS: docs/alexa-voice-commands.md contains the voice command list. It covers
+      todo creation, project status readouts, approval reviews, art request handoffs, and
+      activity summaries with sample phrases. Also documents the auth model (KR_API_TOKEN for
+      project reads; JWT gap for todo creation flagged as a blocker). Also see docs/kr-api-for-voice.md
+      for the full REST endpoint suitability audit.
+      TO APPROVE: Read docs/alexa-voice-commands.md. Set approved_by_human: true and status: done
+      here. Unblocks: alexa-integration/t-002 (relay design note).
 
   - id: t-002
     milestone: m2
