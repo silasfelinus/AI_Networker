@@ -1,5 +1,9 @@
 * text=auto eol=lf
 
+# Auto-generated files: keep main's version on merge conflict
+STATUS.md merge=ours
+workspace.html merge=ours
+
 *.png binary
 *.jpg binary
 *.jpeg binary
