@@ -149,6 +149,9 @@ violation regardless of whether the action seems helpful.
 
 ### Reviewer (Claude) — CAN
 - Merge reversible, scoped, software PRs from `worker/*` branches
+- Merge reversible, scoped, software PRs from `claude/*` branches when the work was
+  directed by Silas in the session (e.g. conductor tooling improvements, startup hooks,
+  ops scripts). Treat these identically to Worker PRs for review purposes.
 - Comment on PRs with specific, actionable feedback
 - Set `status: done`, `status: ready`, `status: blocked`, `status: needs-human`
 - Append entries to `TALKBACK.md` (global) or `projects/<name>/TALKBACK.md` — never overwrite

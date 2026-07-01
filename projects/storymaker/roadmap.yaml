@@ -35,12 +35,19 @@ tasks:
     title: "Draft Storymaker session data model"
     status: needs-human
     owner: worker
-    updated: "2026-06-30T00:00:00Z"
+    updated: "2026-07-01T00:00:00Z"
     passes: 0
     stakes: reversible
     gate_human: true
     note: >
-      Design the Storymaker session data model: participants, narrator Bot,
+      FOR SILAS: docs/storymaker-session-model.md contains the session data model (informed by
+      docs/kr-model-audit.md). It specifies participants, narrator Bot, Scenario variables,
+      narrative state, branch history, and turn ownership for both Guided Adventure and Exquisite
+      Corpse modes. Notes what exists in kind_robots vs what needs new app-owned schema.
+      TO APPROVE: Read docs/storymaker-session-model.md. Set approved_by_human: true and
+      status: done here. Unblocks: storymaker/t-002 (turn lifecycle), t-003 (Exquisite Corpse
+      rules), t-004 (rewards/inventory mapping).
+      ORIGINAL TASK: Design the Storymaker session data model: participants, narrator Bot,
       Scenario variables, current narrative state, inventory changes, branch
       history, turn ownership, and persistence between turns. Draft as
       docs/storymaker-session-model.md for Silas to review.

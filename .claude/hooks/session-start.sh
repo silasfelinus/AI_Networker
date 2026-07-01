@@ -73,6 +73,29 @@ try:
 except Exception as e:
     lines += [f"TALKBACK error: {e}", ""]
 
+# Open PRs (worker/* and claude/* branches) — CLAUDE.md step 3
+try:
+    import urllib.request
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if token:
+        req = urllib.request.Request(
+            "https://api.github.com/repos/silasfelinus/conductor/pulls?state=open&per_page=20",
+            headers={"Authorization": f"token {token}",
+                     "Accept": "application/vnd.github.v3+json"})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            prs = json.loads(resp.read())
+        agent_prs = [
+            f"  #{p['number']} [{p['head']['ref']}] {p['title']}"
+            for p in prs if p["head"]["ref"].startswith(("worker/", "claude/"))
+        ]
+        lines += ["Open agent PRs (worker/* / claude/*):"]
+        lines += agent_prs if agent_prs else ["  none"]
+        lines += [""]
+    else:
+        lines += ["Open agent PRs: GITHUB_TOKEN not set — skipped", ""]
+except Exception as e:
+    lines += [f"Open PRs check error: {e}", ""]
+
 lines += ["NOTE: Read AGENTS.md for the full operating manual before responding."]
 lines += ["=== END SWEEP ==="]
 

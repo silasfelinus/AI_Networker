@@ -427,3 +427,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Claude Code workflow worktrees (temporary, auto-cleaned)
+.claude/worktrees/
